@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import Slide from './Slide.astro';
+import Blocks from './Blocks.astro';
+import ProjectNav from './ProjectNav.astro';
+import type { Project } from '../data/projects';
+import { site, home } from '../data/site';
+import { localePath, type Locale } from '../i18n';
+
+interface Props { project: Project; locale: Locale }
+const { project: p, locale } = Astro.props;
+const plainHook = p.card.hook.replace(/<[^>]+>/g, '');
+---
+<Base locale={locale} path={`/projects/${p.slug}/`} ogImage={localePath(locale, `/og/${p.slug}.png`)} title={`${plainHook} · ${site.name}`} description={p.opener.sub}>
+  <article style={`--acc:${p.accent}`} class="project">
+    <ProjectNav project={p} position="top" locale={locale} />
+    <Slide kicker={p.opener.kicker} hook={p.opener.hook} hookIsH1 sub={p.opener.sub} role={p.opener.role} cover={p.opener.cover} />
+    {p.beats.map((b) => (
+      <section class="beat">
+        <span class="label">{b.label}</span>
+        <h2 class="h3">{b.title}</h2>
+        <Blocks blocks={b.blocks} locale={locale} />
+      </section>
+    ))}
+    <ProjectNav project={p} position="bottom" locale={locale} />
+  </article>
+  <footer style="padding-top:2.5rem">{site.name} · {home[locale].location}</footer>
+</Base>

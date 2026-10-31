@@ -1,29 +1,11 @@
 ---
-import Base from '../../layouts/Base.astro';
-import Slide from '../../components/Slide.astro';
-import Blocks from '../../components/Blocks.astro';
-import ProjectNav from '../../components/ProjectNav.astro';
-import { projects, type Project } from '../../data/projects';
-import { site, url } from '../../data/site';
+import ProjectPage from '../../components/ProjectPage.astro';
+import { getProjects } from '../../i18n';
+import type { Project } from '../../data/projects';
 
 export function getStaticPaths() {
-  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+  return getProjects('en').map((project) => ({ params: { slug: project.slug }, props: { project } }));
 }
-const { project: p } = Astro.props as { project: Project };
-const plainHook = p.card.hook.replace(/<[^>]+>/g, '');
+const { project } = Astro.props as { project: Project };
 ---
-<Base ogImage={url(`/og/${p.slug}.png`)} title={`${plainHook} · ${site.name}`} description={p.opener.sub}>
-  <article style={`--acc:${p.accent}`} class="project">
-    <ProjectNav project={p} position="top" />
-    <Slide kicker={p.opener.kicker} hook={p.opener.hook} hookIsH1 sub={p.opener.sub} role={p.opener.role} cover={p.opener.cover} />
-    {p.beats.map((b) => (
-      <section class="beat">
-        <span class="label">{b.label}</span>
-        <h2 class="h3">{b.title}</h2>
-        <Blocks blocks={b.blocks} />
-      </section>
-    ))}
-    <ProjectNav project={p} position="bottom" />
-  </article>
-  <footer style="padding-top:2.5rem">{site.name} · {site.location}</footer>
-</Base>
+<ProjectPage project={project} locale="en" />

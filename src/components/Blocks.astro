@@ -9,9 +9,10 @@ import ColumnChart from './ColumnChart.astro';
 import Takeaway from './Takeaway.astro';
 import Figure from './Figure.astro';
 import Blocks from './Blocks.astro';
+import type { Locale } from '../i18n';
 
-interface Props { blocks: Block[] }
-const { blocks } = Astro.props;
+interface Props { blocks: Block[]; locale: Locale }
+const { blocks, locale } = Astro.props;
 ---
 {blocks.map((b) => {
   switch (b.type) {
@@ -19,7 +20,7 @@ const { blocks } = Astro.props;
     case 'ul': return <ul>{b.items.map((li) => <li set:html={li} />)}</ul>;
     case 'stats': return <StatGrid items={b.items} />;
     case 'problems': return <ProblemGrid items={b.items} />;
-    case 'log': return <DecisionLog items={b.items} />;
+    case 'log': return <DecisionLog items={b.items} locale={locale} />;
     case 'flow': return <Flow {...b} />;
     case 'compare': return <CompareBars charts={b.charts} />;
     case 'columns': return <ColumnChart {...b} />;
@@ -32,7 +33,7 @@ const { blocks } = Astro.props;
       </div>
     );
     case 'two': return (
-      <div class="two"><div><Blocks blocks={b.left} /></div><div><Blocks blocks={b.right} /></div></div>
+      <div class="two"><div><Blocks blocks={b.left} locale={locale} /></div><div><Blocks blocks={b.right} locale={locale} /></div></div>
     );
   }
 })}

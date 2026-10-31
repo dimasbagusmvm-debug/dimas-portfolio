@@ -1,12 +1,14 @@
 ---
 import { site, url } from '../data/site';
-interface Props { pdf?: boolean; projects?: boolean }
-const { pdf = false, projects = false } = Astro.props;
+import { ui, type Locale } from '../i18n';
+interface Props { pdf?: boolean; projects?: boolean; locale: Locale }
+const { pdf = false, projects = false, locale } = Astro.props;
+const t = ui[locale];
 ---
 <div class="links">
   <a class="primary" href={`mailto:${site.email}`}>{site.email}</a>
   <a href={site.whatsappUrl} target="_blank" rel="noopener">WhatsApp {site.whatsappDisplay}</a>
   <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-  {pdf && <a href={url(site.pdf)} target="_blank" rel="noopener">Download PDF</a>}
-  {projects && <a href="#projects">See projects ↓</a>}
+  {pdf && <a href={url(site.pdf)} target="_blank" rel="noopener">{t.downloadPdf}</a>}
+  {projects && <a href="#projects">{t.seeProjects}</a>}
 </div>

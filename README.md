@@ -26,9 +26,21 @@ npm run preview   # serve dist/ to check the production build
 | `src/assets/projects/` | Project images (resized and lazy-loaded by Astro) |
 | `public/portfolio.pdf` | The PDF served at `/portfolio.pdf` |
 
+## Languages
+
+English is the default at `/`; Indonesian lives under `/id/`. Every page has an EN / ID switch and `hreflang` tags.
+
+| What | English | Indonesian |
+| --- | --- | --- |
+| Case studies | `src/data/projects.ts` | `src/data/projects.id.ts` (same shape and order) |
+| Home page copy | `home.en` in `src/data/site.ts` | `home.id` in `src/data/site.ts` |
+| Buttons, labels, decision tags | `ui.en` in `src/i18n.ts` | `ui.id` in `src/i18n.ts` |
+
+When you change a number, image or structure in one language, change it in the other too.
+
 ## Edit or add a project
 
-1. Open `src/data/projects.ts`.
+1. Open `src/data/projects.ts` (and `src/data/projects.id.ts` for Indonesian).
 2. Change any text in place. Wrap the key phrase of a hook in `<em>…</em>` and number ranges in `<span class="nw">…</span>` so they never break across lines.
 3. To add a project, copy an existing entry in the `projects` array and change `slug`, `num`, `short`, `accent`, `card`, `opener` and `beats`. The page `/projects/<slug>/`, its card on the home page, its OG image and the “Next” link are created automatically. The order of the array is the order on the site.
 4. Each beat is `{ label, title, blocks }`. Available block types (see the `Block` type at the top of the file): `p`, `ul`, `stats`, `problems`, `log`, `flow`, `compare`, `columns`, `takeaway`, `figure`, `figures`, `tiles`, `two` (two columns of blocks).

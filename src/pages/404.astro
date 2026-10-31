@@ -1,10 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
 import Slide from '../components/Slide.astro';
-import { url } from '../data/site';
+import { localePath, ui } from '../i18n';
+// One 404 for both languages: English first, with a way back to each home page.
+const t = ui.en.notFound;
 ---
-<Base title="Page not found · Dimas Bagus Ginta P" description="This page does not exist.">
-  <Slide kicker="404" hook="This story <em>doesn’t exist.</em>" hookIsH1 sub="The page you’re looking for isn’t here. The five real ones are.">
-    <div class="links"><a class="primary" href={url('/#projects')}>← All projects</a></div>
+<Base locale="en" title={`${t.title} · Dimas Bagus Ginta P`} description={t.sub} noindex>
+  <Slide kicker="404" hook={t.hook} hookIsH1 sub={t.sub}>
+    <div class="links">
+      <a class="primary" href={localePath('en', '/#projects')}>{ui.en.allProjects}</a>
+      <a href={localePath('id', '/#projects')} lang="id">{ui.id.allProjects}</a>
+    </div>
   </Slide>
 </Base>

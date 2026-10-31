@@ -1,12 +1,14 @@
 ---
-interface Props { items: { tag: string; title: string; text: string }[] }
-const { items } = Astro.props;
+import { ui, type Locale } from '../i18n';
+type Tag = keyof (typeof ui)['en']['tags'];
+interface Props { items: { tag: Tag; title: string; text: string }[]; locale: Locale }
+const { items, locale } = Astro.props;
 const negative = new Set(['Not chosen', 'Deprioritized']);
 ---
 <div class="log">
   {items.map((o) => (
     <div class:list={['opt', negative.has(o.tag) ? 'drop' : 'keep']}>
-      <span class="tag">{o.tag}</span>
+      <span class="tag">{ui[locale].tags[o.tag]}</span>
       <div><b>{o.title}</b><span>{o.text}</span></div>
     </div>
   ))}

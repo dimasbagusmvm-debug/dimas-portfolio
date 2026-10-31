@@ -1,15 +1,20 @@
 import type { APIRoute, GetStaticPaths } from 'astro';
 import sharp from 'sharp';
-import { projects } from '../../data/projects';
-import { site } from '../../data/site';
+import { site, home } from '../../data/site';
+import { getProjects, locales } from '../../i18n';
 
 const strip = (html: string) => html.replace(/<[^>]+>/g, '');
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-export const getStaticPaths = (() => [
-  { params: { slug: 'home' }, props: { kicker: 'Product portfolio', hook: 'I turn messy operations into products people actually use.', accent: '#A07BFF' } },
-  ...projects.map((p) => ({ params: { slug: p.slug }, props: { kicker: p.opener.kicker, hook: strip(p.opener.hook), accent: p.accent } })),
-]) satisfies GetStaticPaths;
+// English images at /og/<slug>.png, Indonesian at /og/id/<slug>.png.
+export const getStaticPaths = (() =>
+  locales.flatMap((locale) => {
+    const prefix = locale === 'en' ? '' : `${locale}/`;
+    return [
+      { params: { slug: `${prefix}home` }, props: { kicker: home[locale].kicker, hook: strip(home[locale].hook), accent: '#A07BFF' } },
+      ...getProjects(locale).map((p) => ({ params: { slug: `${prefix}${p.slug}` }, props: { kicker: p.opener.kicker, hook: strip(p.opener.hook), accent: p.accent } })),
+    ];
+  })) satisfies GetStaticPaths;
 
 /** Greedy word wrap; SVG text has no wrapping of its own. */
 function wrap(text: string, max: number): string[] {

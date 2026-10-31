@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import { img, projects, type Project } from '../data/projects';
-import { url } from '../data/site';
-interface Props { project: Project }
-const { project: p } = Astro.props;
+import { localePath, ui, type Locale } from '../i18n';
+interface Props { project: Project; locale: Locale }
+const { project: p, locale } = Astro.props;
 ---
-<a class="pcard" href={url(`/projects/${p.slug}/`)} style={`--acc:${p.accent}`}>
+<a class="pcard" href={localePath(locale, `/projects/${p.slug}/`)} style={`--acc:${p.accent}`}>
   <div class="thumb">
     <Image src={img(p.opener.cover.file)} alt="" widths={[400, 700]} sizes="(max-width: 640px) 100vw, 20rem" style={p.opener.cover.position ? `object-position:${p.opener.cover.position}` : undefined} />
     <span class="num">{p.num} / {String(projects.length).padStart(2, '0')}</span>
@@ -15,6 +15,6 @@ const { project: p } = Astro.props;
     <h3 set:html={p.card.hook} />
     <p>{p.card.company}</p>
     <p>{p.card.role}</p>
-    <span class="go">Read the story →</span>
+    <span class="go">{ui[locale].readStory}</span>
   </div>
 </a>

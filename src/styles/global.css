@@ -185,3 +185,9 @@ footer{font-family:var(--mono);font-size:.75rem;color:var(--muted);padding:0 0 2
 .slide .links a.primary{color:#120E24}
 .cover-wrap img{display:block}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.pcard:hover,.hstat:hover{transform:none}*{transition:none!important}}
+
+/* Language switch */
+.langs{display:flex;justify-content:flex-end;gap:.3rem;margin:0 0 .8rem;font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.08em}
+.langs a,.langs span{padding:.3rem .65rem;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--muted);background:var(--surface)}
+.langs span{color:var(--ink);border-color:var(--ink)}
+.langs a:hover{color:var(--ink);border-color:var(--acc)}

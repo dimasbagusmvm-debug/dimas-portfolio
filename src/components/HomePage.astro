@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import Slide from './Slide.astro';
+import ProjectCard from './ProjectCard.astro';
+import CareerTimeline from './CareerTimeline.astro';
+import ContactLinks from './ContactLinks.astro';
+import { site, home } from '../data/site';
+import { getProjects, localePath, type Locale } from '../i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = home[locale];
+const projects = getProjects(locale);
+const accent = Object.fromEntries(projects.map((p) => [p.slug, p.accent]));
+---
+<Base locale={locale} path="/" ogImage={localePath(locale, '/og/home.png')} title={`${site.name} · ${t.title}`} description={t.description}>
+  <Slide class="hero" kicker={t.kicker} hook={t.hook} sub={t.sub}>
+    <h1 slot="before-sub">{site.name} · {t.title}</h1>
+    <ContactLinks pdf projects locale={locale} />
+    <div class="overview">
+      <p class="kicker">{t.numbersKicker}</p>
+      <div class="hstats">
+        {t.heroStats.map((s) => (
+          <a class="hstat" href={localePath(locale, `/projects/${s.slug}/`)} style={`--acc:${accent[s.slug]}`}>
+            <b set:html={s.big} /><span>{s.caption}</span><small>{s.small}</small>
+          </a>
+        ))}
+      </div>
+    </div>
+    <CareerTimeline kicker={t.careerKicker} locale={locale} />
+  </Slide>
+
+  <section class="projects" id="projects">
+    <p class="kicker">{t.projectsKicker}</p>
+    <h2>{t.projectsTitle}</h2>
+    <p class="lead">{t.projectsLead}</p>
+    <div class="cards">{projects.map((p) => <ProjectCard project={p} locale={locale} />)}</div>
+  </section>
+
+  <section class="back">
+    <h2>{t.experienceTitle}</h2>
+    <ul class="exp">
+      {t.experience.map((e) => <li><span class="yr">{e.dates}</span><div><b>{e.role}</b><span class="r">{e.line}</span></div></li>)}
+    </ul>
+    <div class="cols2">
+      <div>
+        <h2>{t.educationTitle}</h2>
+        <ul class="plain">{t.education.map((e) => <li><b>{e.title}</b><span>{e.sub}</span></li>)}</ul>
+      </div>
+      <div>
+        <h2>{t.toolkitTitle}</h2>
+        <ul class="plain">{t.toolkit.map((e) => <li><b>{e.title}</b><span>{e.sub}</span></li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  <Slide class="end" kicker={t.ctaKicker} hook={t.ctaHook} sub={t.ctaSub}>
+    <ContactLinks locale={locale} />
+  </Slide>
+  <footer>{site.name} · {t.location}</footer>
+</Base>

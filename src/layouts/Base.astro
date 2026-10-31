@@ -9,28 +9,43 @@ import '@fontsource/jetbrains-mono/500.css';
 import '@fontsource/jetbrains-mono/700.css';
 import '../styles/global.css';
 import { url } from '../data/site';
+import { alternates, ui, type Locale } from '../i18n';
 
 interface Props {
+  locale: Locale;
+  /** Locale-free path of this page (e.g. /projects/mining/), for hreflang and the language switch */
+  path?: string;
   title: string;
   description: string;
   ogImage?: string;
+  noindex?: boolean;
 }
-const { title, description, ogImage } = Astro.props;
+const { locale, path, title, description, ogImage, noindex = false } = Astro.props;
+const alt = path ? alternates(path) : undefined;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const og = ogImage ? new URL(ogImage, Astro.site).href : undefined;
 ---
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {alt && (
+      <>
+        <link rel="alternate" hreflang="en" href={new URL(alt.en, Astro.site)} />
+        <link rel="alternate" hreflang="id" href={new URL(alt.id, Astro.site)} />
+        <link rel="alternate" hreflang="x-default" href={new URL(alt.en, Astro.site)} />
+      </>
+    )}
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
     <link rel="sitemap" href={url('/sitemap-index.xml')} />
     <meta name="theme-color" content="#0C0E1C" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content={locale === 'id' ? 'id_ID' : 'en_US'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -42,6 +57,15 @@ const og = ogImage ? new URL(ogImage, Astro.site).href : undefined;
   </head>
   <body>
     <main class="wrap">
+      {alt && (
+        <nav class="langs" aria-label="Language">
+          {(['en', 'id'] as const).map((l) => (
+            l === locale
+              ? <span aria-current="true">{l.toUpperCase()}</span>
+              : <a href={alt[l]} hreflang={l} lang={l} title={ui[locale].switchTo}>{l.toUpperCase()}</a>
+          ))}
+        </nav>
+      )}
       <slot />
     </main>
   </body>
