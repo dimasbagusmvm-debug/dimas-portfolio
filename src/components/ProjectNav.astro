@@ -1,0 +1,18 @@
+---
+import { nextProject, projects, type Project } from '../data/projects';
+import { url } from '../data/site';
+interface Props { project: Project; position: 'top' | 'bottom' }
+const { project, position } = Astro.props;
+const next = nextProject(project.slug);
+---
+{position === 'top' ? (
+  <nav class="crumbs" aria-label="Project navigation">
+    <a href={url('/#projects')}>← All projects</a>
+    <span>{project.num} / {String(projects.length).padStart(2, '0')}</span>
+  </nav>
+) : (
+  <nav class="chapter-nav" aria-label="Project navigation">
+    <a href={url('/#projects')}>← All projects</a>
+    <a class="next" href={url(`/projects/${next.slug}/`)} style={`--acc:${next.accent}`}>Next: {next.short} →</a>
+  </nav>
+)}

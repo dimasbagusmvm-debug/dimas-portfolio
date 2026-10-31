@@ -1,0 +1,16 @@
+---
+import { Image } from 'astro:assets';
+import { img } from '../data/projects';
+type Item = { file: string; alt: string; caption: string };
+interface Props { items: Item[] }
+const { items } = Astro.props;
+const two = items.length > 1;
+---
+<div class:list={[two && 'shots']}>
+  {items.map((f) => (
+    <figure class="shot">
+      <Image src={img(f.file)} alt={f.alt} widths={two ? [400, 700, 1000] : [600, 1000, 1500]} sizes={two ? '(max-width: 680px) 100vw, 30rem' : '(max-width: 62rem) 100vw, 60rem'} />
+      <figcaption>{f.caption}</figcaption>
+    </figure>
+  ))}
+</div>

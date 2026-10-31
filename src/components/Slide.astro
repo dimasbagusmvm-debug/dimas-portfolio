@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import { img } from '../data/projects';
+
+interface Props {
+  kicker: string;
+  hook: string;
+  /** Render the hook as the page's h1 (project pages) */
+  hookIsH1?: boolean;
+  sub?: string;
+  role?: string[];
+  cover?: { file: string; alt: string; position?: string };
+  class?: string;
+}
+const { kicker, hook, hookIsH1 = false, sub, role, cover, class: cls = '' } = Astro.props;
+const Hook = hookIsH1 ? 'h1' : 'p';
+---
+<section class:list={['slide', cls]}>
+  <p class="kicker">{kicker}</p>
+  <Hook class="hook" set:html={hook} />
+  <slot name="before-sub" />
+  {sub && <p class="sub">{sub}</p>}
+  {role && <p class="role">{role.map((r, i) => <>{i > 0 && <br />}{r}</>)}</p>}
+  <slot />
+  {cover && (
+    <Image
+      class="cover"
+      src={img(cover.file)}
+      alt={cover.alt}
+      widths={[480, 800, 1200, 1600]}
+      sizes="(max-width: 62rem) 100vw, 60rem"
+      loading="eager"
+      fetchpriority="high"
+      style={cover.position ? `object-position:${cover.position}` : undefined}
+    />
+  )}
+</section>

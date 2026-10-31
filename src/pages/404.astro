@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import Slide from '../components/Slide.astro';
+import { url } from '../data/site';
+---
+<Base title="Page not found · Dimas Bagus Ginta P" description="This page does not exist.">
+  <Slide kicker="404" hook="This story <em>doesn’t exist.</em>" hookIsH1 sub="The page you’re looking for isn’t here. The five real ones are.">
+    <div class="links"><a class="primary" href={url('/#projects')}>← All projects</a></div>
+  </Slide>
+</Base>

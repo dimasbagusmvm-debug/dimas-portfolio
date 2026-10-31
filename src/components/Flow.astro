@@ -1,0 +1,23 @@
+---
+import type { Step } from '../data/projects';
+interface Props { title: string; steps: (Step | Step[])[]; caption?: string }
+const { title, steps, caption } = Astro.props;
+---
+<figure class="fig">
+  <p class="fig-title">{title}</p>
+  <div class="flow">
+    {steps.map((s, i) => (
+      <>
+        {i > 0 && <span class="arrow" aria-hidden="true">→</span>}
+        {Array.isArray(s) ? (
+          <div class="stack">
+            {s.map((x) => <div class:list={['step', x.highlight && 'hl']}><b>{x.title}</b><span>{x.text}</span></div>)}
+          </div>
+        ) : (
+          <div class:list={['step', s.highlight && 'hl']}><b>{s.title}</b><span>{s.text}</span></div>
+        )}
+      </>
+    ))}
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

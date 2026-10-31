@@ -1,0 +1,31 @@
+---
+import type { Compare } from '../data/projects';
+interface Props { charts: Compare[] }
+const { charts } = Astro.props;
+const pct = (v: number, max: number) => `${Math.min(100, (v / max) * 100)}%`;
+---
+<div class="fig">
+  <div class:list={[charts.length > 1 && 'trio']}>
+    {charts.map((c) => (
+      <figure style="margin:0" role="img" aria-label={c.ariaLabel}>
+        {c.title && <p class="fig-title">{c.title}</p>}
+        <div class="cmp">
+          {c.rows.map((r) => {
+            const cls = r.kind === 'before' ? 'lo' : 'hi';
+            return (
+              <div class="cmp-row">
+                <em>{r.label}</em>
+                <div class="track">
+                  {r.hi !== undefined && <i class:list={[cls, 'fade']} style={`width:${pct(r.hi, c.max)}`} />}
+                  <i class={cls} style={`width:${pct(r.lo, c.max)}`} />
+                </div>
+                <strong class="nw">{r.value}</strong>
+              </div>
+            );
+          })}
+        </div>
+        {c.caption && <figcaption>{c.caption}</figcaption>}
+      </figure>
+    ))}
+  </div>
+</div>

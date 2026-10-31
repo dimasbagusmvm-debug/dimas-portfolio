@@ -1,0 +1,23 @@
+---
+import type { Column } from '../data/projects';
+interface Props { title: string; max: number; cols: Column[]; caption?: string; ariaLabel: string }
+const { title, max, cols, caption, ariaLabel } = Astro.props;
+const color = { neutral: 'var(--muted)', drop: 'var(--drop)', acc: 'var(--acc)' };
+// Leave room for the value label above each bar.
+const barHeight = (v: number) => `calc((100% - 1.6rem) * ${(v / max).toFixed(3)})`;
+---
+<figure class="fig" role="img" aria-label={ariaLabel}>
+  <p class="fig-title">{title}</p>
+  <div class="cols">
+    {cols.map((c) => (
+      <div class="col">
+        <strong>{c.value}</strong>
+        <div class="colbar" style={`--c:${color[c.color]};height:${barHeight(c.hi ?? c.lo)}`}>
+          <i style={`height:${((c.lo / (c.hi ?? c.lo)) * 100).toFixed(1)}%`} />
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="collabels">{cols.map((c) => <span>{c.label}</span>)}</div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

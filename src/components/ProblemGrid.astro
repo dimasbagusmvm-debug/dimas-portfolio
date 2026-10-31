@@ -1,0 +1,7 @@
+---
+interface Props { items: [string, string][] }
+const { items } = Astro.props;
+---
+<div class="problems">
+  {items.map(([title, text]) => <div class="problem"><b>{title}</b><span>{text}</span></div>)}
+</div>

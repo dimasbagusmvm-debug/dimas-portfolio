@@ -1,0 +1,16 @@
+---
+import { career, careerYears } from '../data/site';
+const total = career.reduce((s, c) => s + c.months, 0);
+---
+<div class="career">
+  <p class="kicker">Nine years, five companies</p>
+  <div class="career-bar" role="img" aria-label={career.map((c) => `${c.name}: ${c.months} months`).join(', ')}>
+    {career.map((c) => <i style={`flex:${c.months / total};background:${c.color}`} />)}
+  </div>
+  <div class="career-axis" aria-hidden="true">
+    {careerYears.map((y) => <span style={y.at === 100 ? 'right:0' : `left:${y.at}%`}>{y.year}</span>)}
+  </div>
+  <ul class="legend">
+    {career.map((c) => <li><i style={`background:${c.color}`} />{c.name === 'Interactive Technologies' ? 'Interactive Technologies' : c.name}</li>)}
+  </ul>
+</div>

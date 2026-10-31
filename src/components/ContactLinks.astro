@@ -1,0 +1,12 @@
+---
+import { site, url } from '../data/site';
+interface Props { pdf?: boolean; projects?: boolean }
+const { pdf = false, projects = false } = Astro.props;
+---
+<div class="links">
+  <a class="primary" href={`mailto:${site.email}`}>{site.email}</a>
+  <a href={site.whatsappUrl} target="_blank" rel="noopener">WhatsApp {site.whatsappDisplay}</a>
+  <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+  {pdf && <a href={url(site.pdf)} target="_blank" rel="noopener">Download PDF</a>}
+  {projects && <a href="#projects">See projects ↓</a>}
+</div>

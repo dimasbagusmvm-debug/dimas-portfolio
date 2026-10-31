@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import { img, projects, type Project } from '../data/projects';
+import { url } from '../data/site';
+interface Props { project: Project }
+const { project: p } = Astro.props;
+---
+<a class="pcard" href={url(`/projects/${p.slug}/`)} style={`--acc:${p.accent}`}>
+  <div class="thumb">
+    <Image src={img(p.opener.cover.file)} alt="" widths={[400, 700]} sizes="(max-width: 640px) 100vw, 20rem" style={p.opener.cover.position ? `object-position:${p.opener.cover.position}` : undefined} />
+    <span class="num">{p.num} / {String(projects.length).padStart(2, '0')}</span>
+  </div>
+  <div class="body">
+    <p class="kicker">{p.card.kicker}</p>
+    <h3 set:html={p.card.hook} />
+    <p>{p.card.company}</p>
+    <p>{p.card.role}</p>
+    <span class="go">Read the story →</span>
+  </div>
+</a>

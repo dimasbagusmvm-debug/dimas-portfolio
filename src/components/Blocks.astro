@@ -1,0 +1,38 @@
+---
+import type { Block } from '../data/projects';
+import StatGrid from './StatGrid.astro';
+import ProblemGrid from './ProblemGrid.astro';
+import DecisionLog from './DecisionLog.astro';
+import Flow from './Flow.astro';
+import CompareBars from './CompareBars.astro';
+import ColumnChart from './ColumnChart.astro';
+import Takeaway from './Takeaway.astro';
+import Figure from './Figure.astro';
+import Blocks from './Blocks.astro';
+
+interface Props { blocks: Block[] }
+const { blocks } = Astro.props;
+---
+{blocks.map((b) => {
+  switch (b.type) {
+    case 'p': return <p set:html={b.html} />;
+    case 'ul': return <ul>{b.items.map((li) => <li set:html={li} />)}</ul>;
+    case 'stats': return <StatGrid items={b.items} />;
+    case 'problems': return <ProblemGrid items={b.items} />;
+    case 'log': return <DecisionLog items={b.items} />;
+    case 'flow': return <Flow {...b} />;
+    case 'compare': return <CompareBars charts={b.charts} />;
+    case 'columns': return <ColumnChart {...b} />;
+    case 'takeaway': return <Takeaway {...b} />;
+    case 'figure': return <Figure items={[b]} />;
+    case 'figures': return <Figure items={b.items} />;
+    case 'tiles': return (
+      <div class="tiles">
+        {b.items.map((s) => <div class:list={['step', s.highlight && 'hl']}><b>{s.title}</b><span>{s.text}</span></div>)}
+      </div>
+    );
+    case 'two': return (
+      <div class="two"><div><Blocks blocks={b.left} /></div><div><Blocks blocks={b.right} /></div></div>
+    );
+  }
+})}

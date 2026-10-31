@@ -1,0 +1,13 @@
+---
+interface Props { items: { tag: string; title: string; text: string }[] }
+const { items } = Astro.props;
+const negative = new Set(['Not chosen', 'Deprioritized']);
+---
+<div class="log">
+  {items.map((o) => (
+    <div class:list={['opt', negative.has(o.tag) ? 'drop' : 'keep']}>
+      <span class="tag">{o.tag}</span>
+      <div><b>{o.title}</b><span>{o.text}</span></div>
+    </div>
+  ))}
+</div>
