@@ -12,6 +12,7 @@ export const ui = {
     langName: 'English',
     switchTo: 'Baca dalam Bahasa Indonesia',
     allProjects: '← All projects',
+    allBuilds: '← All builds',
     next: 'Next',
     readStory: 'Read the story →',
     downloadPdf: 'Download PDF',
@@ -21,13 +22,14 @@ export const ui = {
     notFound: {
       title: 'Page not found',
       hook: 'This story <em>doesn’t exist.</em>',
-      sub: 'The page you’re looking for isn’t here. The five real ones are.',
+      sub: 'The page you’re looking for isn’t here. The real ones are on the home page.',
     },
   },
   id: {
     langName: 'Bahasa Indonesia',
     switchTo: 'Read in English',
     allProjects: '← Semua proyek',
+    allBuilds: '← Semua build',
     next: 'Berikutnya',
     readStory: 'Baca ceritanya →',
     downloadPdf: 'Unduh PDF',
@@ -37,13 +39,23 @@ export const ui = {
     notFound: {
       title: 'Halaman tidak ditemukan',
       hook: 'Cerita ini <em>tidak ada.</em>',
-      sub: 'Halaman yang kamu cari tidak ada di sini. Lima cerita yang asli ada di halaman utama.',
+      sub: 'Halaman yang kamu cari tidak ada di sini. Cerita yang asli ada di halaman utama.',
     },
   },
 } as const;
 
 export function getProjects(locale: Locale): Project[] {
   return locale === 'id' ? projectsId : projectsEn;
+}
+
+/** Projects in the same home section as `project` ("case" when unset). */
+export function projectGroup(locale: Locale, group: Project['group'] = 'case'): Project[] {
+  return getProjects(locale).filter((p) => (p.group ?? 'case') === group);
+}
+
+/** Home anchor for a project's section. */
+export function groupAnchor(group: Project['group'] = 'case'): string {
+  return group === 'builder' ? '/#builder' : '/#projects';
 }
 
 /** Internal link for a locale: English at the root, Indonesian under /id. */

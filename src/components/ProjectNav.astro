@@ -1,20 +1,23 @@
 ---
-import { getProjects, localePath, ui, type Locale } from '../i18n';
+import { groupAnchor, localePath, projectGroup, ui, type Locale } from '../i18n';
 import type { Project } from '../data/projects';
 interface Props { project: Project; position: 'top' | 'bottom'; locale: Locale }
 const { project, position, locale } = Astro.props;
-const projects = getProjects(locale);
-const next = projects[(projects.findIndex((p) => p.slug === project.slug) + 1) % projects.length];
+// Prev/next stay inside the project's home section (case studies or builds).
+const projects = projectGroup(locale, project.group);
+const next = projects.length > 1 ? projects[(projects.findIndex((p) => p.slug === project.slug) + 1) % projects.length] : undefined;
 const t = ui[locale];
+const back = localePath(locale, groupAnchor(project.group));
+const backLabel = project.group === 'builder' ? t.allBuilds : t.allProjects;
 ---
 {position === 'top' ? (
   <nav class="crumbs" aria-label="Project navigation">
-    <a href={localePath(locale, '/#projects')}>{t.allProjects}</a>
+    <a href={back}>{backLabel}</a>
     <span>{project.num} / {String(projects.length).padStart(2, '0')}</span>
   </nav>
 ) : (
   <nav class="chapter-nav" aria-label="Project navigation">
-    <a href={localePath(locale, '/#projects')}>{t.allProjects}</a>
-    <a class="next" href={localePath(locale, `/projects/${next.slug}/`)} style={`--acc:${next.accent}`}>{t.next}: {next.short} →</a>
+    <a href={back}>{backLabel}</a>
+    {next && <a class="next" href={localePath(locale, `/projects/${next.slug}/`)} style={`--acc:${next.accent}`}>{t.next}: {next.short} →</a>}
   </nav>
 )}

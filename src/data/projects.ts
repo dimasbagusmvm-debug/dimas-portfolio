@@ -27,7 +27,7 @@ export type Block =
   | { type: 'columns'; title: string; max: number; cols: Column[]; caption?: string; ariaLabel: string }
   | { type: 'takeaway'; label: string; text: string }
   | { type: 'figure'; file: string; alt: string; caption: string }
-  | { type: 'figures'; items: { file: string; alt: string; caption: string }[] }
+  | { type: 'figures'; items: { file: string; alt: string; caption: string; /** portrait shot, e.g. a phone */ tall?: boolean }[] }
   | { type: 'tiles'; items: Step[] }
   | { type: 'two'; left: Block[]; right: Block[] };
 
@@ -36,6 +36,8 @@ export type Beat = { label: string; title: string; blocks: Block[] };
 export type Project = {
   slug: string;
   num: string;
+  /** Main case studies, or things built hands-on (shown in their own home section) */
+  group?: 'case' | 'builder';
   /** Short name used in “Next: …” */
   short: string;
   accent: string;
@@ -487,6 +489,149 @@ export const projects: Project[] = [
         blocks: [
           { type: 'takeaway', label: 'School', text: 'My first product school: discovery, testing, MVP, iteration and go-to-market, all on one product.' },
           { type: 'p', html: 'Everything I did later at Majoo, ViaPulsa, Minergo and eDOT started with the habits I built here.' },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'tappin',
+    short: 'tapp.in',
+    num: '01',
+    group: 'builder',
+    accent: '#8BCB4A',
+    card: {
+      kicker: 'Retail POS · Built with Claude Code',
+      hook: 'From a fragile spreadsheet app to a live multi-outlet POS',
+      company: 'tapp.in (Bekalin Group) · 2026',
+      role: 'Product owner & builder',
+    },
+    opener: {
+      kicker: 'Product builder · Retail POS · Built with Claude Code',
+      hook: 'A spreadsheet POS rebuilt into <em>a live web app.</em>',
+      sub: 'A cashier, stock and reporting app for three outlets in Malang and Surabaya. I owned the product decisions and built it with Claude Code, first on Google Apps Script, then as a web app on Vercel.',
+      role: ['tapp.in, formerly Bekalin POS · Bekalin Group · Oct–Nov 2026', 'Product owner & builder · Claude Code, Google Apps Script, Vercel, Supabase'],
+      cover: { file: 'tappin-dashboard.jpg', position: 'top', alt: 'tapp.in dashboard: today’s sales, transactions and items sold, a 7-day sales chart, payment methods and latest transactions, with an outlet filter' },
+    },
+    beats: [
+      {
+        label: 'Context',
+        title: 'Let me give you some context first',
+        blocks: [
+          { type: 'p', html: 'Bekalin Group sells food from three outlets in Malang and Surabaya, stocked from three warehouses. Its POS started as a Google Apps Script web app with Google Sheets as the database: cashier, pre-orders, stock and reports in one place.' },
+          { type: 'stats', items: [['3', 'outlets: Bekalin Malang, Ngombe Es Malang, Bekalin Surabaya'], ['3', 'warehouses, tracked separately from outlets'], ['3', 'roles: super admin, admin and cashier'], ['5', 'payment methods: cash, QRIS, bank transfer, Shopee, TikTok Shop']] },
+        ],
+      },
+      {
+        label: 'Users',
+        title: 'Who uses it, and how',
+        blocks: [
+          { type: 'stats', items: [['Cashier', 'sells and takes pre-orders at one outlet, with no back-office access'], ['Admin', 'runs products, stock, customers, discounts, reports and users'], ['Owner', 'everything an admin does, plus owner-only settings']] },
+          { type: 'flow', title: 'A cashier’s shift', steps: [
+            { title: 'Open the till', text: 'Log in and enter the opening cash' },
+            { title: 'Ring up', text: 'Tap products, pick or add a customer, apply a discount', highlight: true },
+            { title: 'Pay', text: 'Cash, QRIS, bank transfer, Shopee or TikTok Shop' },
+            { title: 'Receipt', text: 'Thermal receipt, or save as a pre-order to pay later' },
+            { title: 'Close the till', text: 'Count the cash; the app shows the difference', highlight: true },
+          ] },
+          { type: 'flow', title: 'An owner’s day', steps: [
+            { title: 'Daily summary', text: 'Sales and cash differences, sent as a notification', highlight: true },
+            { title: 'Dashboard', text: '7-day trend, top products, vs yesterday, per outlet' },
+            { title: 'Sales report', text: 'By period, outlet and payment method' },
+            { title: 'Stock', text: 'Stock in, transfers and adjustments across warehouses' },
+          ] },
+        ],
+      },
+      {
+        label: 'The problem',
+        title: 'So what went wrong?',
+        blocks: [
+          { type: 'p', html: 'These all came from using the app day to day, in my own words at the time.' },
+          { type: 'problems', items: [
+            ['Heavy screens wouldn’t open', 'Apps Script often failed while parsing data, so the sales report and stock often didn’t load.'],
+            ['Malang and Surabaya mixed together', 'Sales couldn’t be split by city, and the report didn’t show how many items were sold.'],
+            ['A cashier that felt stiff', 'The counter screen felt like the old Google app, and switching between cashier and back office was clumsy.'],
+            ['Work pushed to the back office', 'Adding a customer or a manual discount meant leaving the cashier, and receipts weren’t in thermal format.'],
+            ['A back office that broke', 'Saving a product failed, even on a phone, SKUs had to be typed by hand, and some lists wouldn’t scroll.'],
+            ['Logged out on every return', 'Reopening the installed app didn’t keep the login session.'],
+            ['Outlets confused with warehouses', 'The data treated a selling location and a stock location as the same thing, so the dashboard showed the wrong relationships.'],
+          ] },
+        ],
+      },
+      {
+        label: 'The approach',
+        title: 'Fix it in place first, then move it',
+        blocks: [
+          { type: 'p', html: 'I worked with Claude Code the way I work with an engineering team: I set the scope and made the calls, it wrote and refactored the code, and every change shipped as a numbered version.' },
+          { type: 'flow', title: 'Apps Script, version by version (31 Oct – 5 Nov)', caption: 'Eleven versions in six days, from V20.0.0 to V20.1.0.', steps: [
+            { title: 'V20.0.2', text: 'Schema migrations that run once per version' },
+            { title: 'V20.0.3', text: 'Outlet filter and total items sold in the sales report' },
+            { title: 'V20.0.x', text: 'Page-by-page UI refresh: cashier, stock, pre-orders', highlight: true },
+            { title: 'V20.1.0', text: 'Dashboard redesign: 7-day trend, top products, vs yesterday' },
+          ] },
+        ],
+      },
+      {
+        label: 'Decisions',
+        title: 'Rewrite it, or move it?',
+        blocks: [
+          { type: 'log', items: [
+            { tag: 'Chosen', title: 'Move to a web app, keep the Apps Script logic', text: 'The rebuild runs the original server code unchanged on a compatibility layer that mimics Google Sheets, backed by Supabase Postgres and served from Vercel.' },
+            { tag: 'Deprioritized', title: 'The AI agent', text: 'The Apps Script version only had a placeholder for it, with no model connected. I left it out of the rebuild until its scope is clear.' },
+            { tag: 'Deprioritized', title: 'Online ordering', text: 'Dropped from the rebuild to focus on the cashier and the back office.' },
+            { tag: 'Chosen', title: 'Product variants with their own stock', text: 'One variant dimension, each with separate stock. Modifiers wait for later.' },
+            { tag: 'Chosen', title: 'Selling locations separate from warehouses', text: 'An outlet sells; a warehouse holds stock. The data model now treats them as different things.' },
+          ] },
+          { type: 'flow', title: 'From Apps Script to web app', steps: [
+            { title: 'Original Code.gs', text: 'Server logic kept as it was' },
+            { title: 'Compatibility layer', text: 'Mimics SpreadsheetApp and google.script.run', highlight: true },
+            { title: 'Supabase Postgres', text: 'Sheets stored as rows' },
+            { title: 'Vercel + PWA', text: 'Installable web app for cashiers and owners', highlight: true },
+          ] },
+        ],
+      },
+      {
+        label: 'Pain → fix',
+        title: 'What each pain point turned into',
+        blocks: [
+          { type: 'log', items: [
+            { tag: 'Chosen', title: 'Heavy screens → a new platform', text: 'Moved from Apps Script to Vercel and Supabase, so reports and stock load like any other page.' },
+            { tag: 'Chosen', title: 'Mixed cities → outlets and warehouses', text: 'A city filter became three outlets mapped to three warehouses, with users assigned to an outlet.' },
+            { tag: 'Chosen', title: 'Back-office detours → done at the counter', text: 'Customers and manual discounts are added from the cashier screen, and receipts print in thermal format.' },
+            { tag: 'Chosen', title: 'Variants in a separate flow → one add-product button', text: 'Variants are added from the same button, each with its own stock. For example, a regular and a jumbo iced orange.' },
+            { tag: 'Chosen', title: 'Checking the dashboard → a daily summary', text: 'The owner and admins get the day’s sales automatically, and can switch it off in settings.' },
+          ] },
+        ],
+      },
+      {
+        label: 'The product',
+        title: 'What tapp.in does today',
+        blocks: [
+          { type: 'tiles', items: [
+            { title: 'Cashier', text: 'Cart, discounts, pre-orders and thermal receipts', highlight: true },
+            { title: 'Stock', text: 'FIFO by batch across warehouses: stock in, transfer, adjustment, history' },
+            { title: 'Back office', text: 'Products and variants, customers, discounts, users and an audit log' },
+            { title: 'Reports', text: 'Dashboard and sales report by outlet and payment method', highlight: true },
+          ] },
+          { type: 'figure', file: 'tappin-cashier.jpg', alt: 'tapp.in cashier screen with product tiles on the left and the order with a Rp12.000 total on the right', caption: 'The cashier: tap products, pick a customer or discount, pay or save as a pre-order.' },
+          { type: 'figures', items: [
+            { file: 'tappin-report.jpg', alt: 'tapp.in sales report for this month with totals, payment method breakdown and an invoice list', caption: 'Sales report, filterable by period and outlet, with a printable receipt per invoice.' },
+            { file: 'tappin-mobile.jpg', tall: true, alt: 'tapp.in cashier on a phone with two products in the cart', caption: 'The same cashier on a phone, as an installable web app.' },
+          ] },
+          { type: 'p', html: 'Since the move it has kept growing: product variants, a manual discount and new customers from the cashier, update notifications, and a daily sales summary sent to the owner and admins.' },
+        ],
+      },
+      {
+        label: OUTCOME,
+        title: 'What changed',
+        blocks: [
+          { type: 'stats', items: [['Live', 'on Vercel as tapp.in, an installable web app'], ['11', 'Apps Script versions in six days before the move'], ['1', 'system for 3 outlets and 3 warehouses'], ['Same', 'server logic as the Apps Script version, running on the new stack']] },
+        ],
+      },
+      {
+        label: LESSON,
+        title: 'What I took away',
+        blocks: [
+          { type: 'p', html: 'With an AI pair, building gets fast. Deciding what not to build, like the AI agent and online ordering, is what kept the product usable for the people at the counter.' },
         ],
       },
     ],

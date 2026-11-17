@@ -126,7 +126,9 @@ h1,h2,h3,h4{font-family:var(--display)}
 .shot img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
 .shots{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin:1rem 0}
 .shots .shot{margin:0}
-@media (max-width:680px){.shots{grid-template-columns:1fr}}
+.shots:has(.tall){grid-template-columns:2fr 1fr;align-items:start}
+.shot.tall img{max-height:30rem;width:auto;max-width:100%;margin:0 auto}
+@media (max-width:680px){.shots,.shots:has(.tall){grid-template-columns:1fr}}
 
 .cols{display:flex;align-items:flex-end;gap:.8rem;height:190px;border-bottom:1px solid var(--line)}
 .col{flex:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}

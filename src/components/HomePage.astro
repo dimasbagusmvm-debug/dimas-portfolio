@@ -5,13 +5,14 @@ import ProjectCard from './ProjectCard.astro';
 import CareerTimeline from './CareerTimeline.astro';
 import ContactLinks from './ContactLinks.astro';
 import { site, home } from '../data/site';
-import { getProjects, localePath, type Locale } from '../i18n';
+import { getProjects, localePath, projectGroup, type Locale } from '../i18n';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = home[locale];
-const projects = getProjects(locale);
-const accent = Object.fromEntries(projects.map((p) => [p.slug, p.accent]));
+const projects = projectGroup(locale, 'case');
+const builds = projectGroup(locale, 'builder');
+const accent = Object.fromEntries(getProjects(locale).map((p) => [p.slug, p.accent]));
 ---
 <Base locale={locale} path="/" ogImage={localePath(locale, '/og/home.png')} title={`${site.name} · ${t.title}`} description={t.description}>
   <Slide class="hero" kicker={t.kicker} hook={t.hook} sub={t.sub}>
@@ -36,6 +37,15 @@ const accent = Object.fromEntries(projects.map((p) => [p.slug, p.accent]));
     <p class="lead">{t.projectsLead}</p>
     <div class="cards">{projects.map((p) => <ProjectCard project={p} locale={locale} />)}</div>
   </section>
+
+  {builds.length > 0 && (
+    <section class="projects" id="builder">
+      <p class="kicker">{t.builderKicker}</p>
+      <h2>{t.builderTitle}</h2>
+      <p class="lead">{t.builderLead}</p>
+      <div class="cards">{builds.map((p) => <ProjectCard project={p} locale={locale} />)}</div>
+    </section>
+  )}
 
   <section class="back">
     <h2>{t.experienceTitle}</h2>

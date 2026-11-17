@@ -446,4 +446,147 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: 'tappin',
+    short: 'tapp.in',
+    num: '01',
+    group: 'builder',
+    accent: '#8BCB4A',
+    card: {
+      kicker: 'POS ritel · Dibangun dengan Claude Code',
+      hook: 'Dari aplikasi spreadsheet yang rapuh menjadi POS multi-outlet yang live',
+      company: 'tapp.in (Bekalin Group) · 2026',
+      role: 'Product owner & builder',
+    },
+    opener: {
+      kicker: 'Product builder · POS ritel · Dibangun dengan Claude Code',
+      hook: 'POS berbasis spreadsheet, dibangun ulang menjadi <em>web app yang live.</em>',
+      sub: 'Aplikasi kasir, stok, dan laporan untuk tiga outlet di Malang dan Surabaya. Saya memegang keputusan produknya dan membangunnya bersama Claude Code, awalnya di Google Apps Script, lalu sebagai web app di Vercel.',
+      role: ['tapp.in, sebelumnya Bekalin POS · Bekalin Group · Okt–Nov 2026', 'Product owner & builder · Claude Code, Google Apps Script, Vercel, Supabase'],
+      cover: { file: 'tappin-dashboard.jpg', position: 'top', alt: 'Dashboard tapp.in: penjualan hari ini, transaksi, dan item terjual, grafik penjualan 7 hari, metode pembayaran, dan transaksi terbaru, dengan filter outlet' },
+    },
+    beats: [
+      {
+        label: 'Konteks',
+        title: 'Sedikit konteks dulu',
+        blocks: [
+          { type: 'p', html: 'Bekalin Group berjualan makanan dari tiga outlet di Malang dan Surabaya, dengan stok dari tiga gudang. POS-nya berawal sebagai web app Google Apps Script dengan Google Sheets sebagai database: kasir, pre-order, stok, dan laporan di satu tempat.' },
+          { type: 'stats', items: [['3', 'outlet: Bekalin Malang, Ngombe Es Malang, Bekalin Surabaya'], ['3', 'gudang, dicatat terpisah dari outlet'], ['3', 'peran: super admin, admin, dan kasir'], ['5', 'metode bayar: tunai, QRIS, transfer bank, Shopee, TikTok Shop']] },
+        ],
+      },
+      {
+        label: 'Pengguna',
+        title: 'Siapa yang memakainya, dan bagaimana',
+        blocks: [
+          { type: 'stats', items: [['Kasir', 'berjualan dan menerima pre-order di satu outlet, tanpa akses back office'], ['Admin', 'mengelola produk, stok, pelanggan, diskon, laporan, dan pengguna'], ['Pemilik', 'semua yang dilakukan admin, ditambah pengaturan khusus pemilik']] },
+          { type: 'flow', title: 'Satu shift kasir', steps: [
+            { title: 'Buka kasir', text: 'Login dan isi modal awal di laci' },
+            { title: 'Input pesanan', text: 'Ketuk produk, pilih atau tambah pelanggan, beri diskon', highlight: true },
+            { title: 'Bayar', text: 'Tunai, QRIS, transfer bank, Shopee, atau TikTok Shop' },
+            { title: 'Struk', text: 'Struk thermal, atau simpan sebagai pre-order untuk dibayar nanti' },
+            { title: 'Tutup kasir', text: 'Hitung uang; aplikasi menampilkan selisihnya', highlight: true },
+          ] },
+          { type: 'flow', title: 'Satu hari pemilik', steps: [
+            { title: 'Ringkasan harian', text: 'Penjualan dan selisih kas, dikirim sebagai notifikasi', highlight: true },
+            { title: 'Dashboard', text: 'Tren 7 hari, produk terlaris, banding kemarin, per outlet' },
+            { title: 'Laporan penjualan', text: 'Per periode, outlet, dan metode bayar' },
+            { title: 'Stok', text: 'Stok masuk, transfer, dan penyesuaian di semua gudang' },
+          ] },
+        ],
+      },
+      {
+        label: 'Masalahnya',
+        title: 'Jadi, apa yang salah?',
+        blocks: [
+          { type: 'p', html: 'Semua ini muncul dari pemakaian sehari-hari, dengan kata-kata saya sendiri saat itu.' },
+          { type: 'problems', items: [
+            ['Layar berat tidak mau terbuka', 'Apps Script sering gagal memproses data, sehingga laporan penjualan dan stok sering tidak bisa dimuat.'],
+            ['Malang dan Surabaya tercampur', 'Penjualan tidak bisa dipisah per kota, dan laporan tidak menampilkan jumlah item terjual.'],
+            ['Kasir yang terasa kaku', 'Layar kasir masih terasa seperti aplikasi Google yang lama, dan peralihan antara kasir dan back office terasa canggung.'],
+            ['Kerjaan terlempar ke back office', 'Menambah pelanggan atau diskon manual harus keluar dari kasir, dan struk belum berformat thermal.'],
+            ['Back office yang rusak', 'Menyimpan produk gagal, bahkan dari ponsel, SKU harus diketik manual, dan beberapa daftar tidak bisa di-scroll.'],
+            ['Logout setiap kali kembali', 'Membuka ulang aplikasi yang terpasang tidak menyimpan sesi login.'],
+            ['Outlet tertukar dengan gudang', 'Data memperlakukan lokasi jual dan lokasi stok sebagai hal yang sama, sehingga relasi di dashboard keliru.'],
+          ] },
+        ],
+      },
+      {
+        label: 'Pendekatannya',
+        title: 'Perbaiki di tempat dulu, baru dipindahkan',
+        blocks: [
+          { type: 'p', html: 'Saya bekerja dengan Claude Code seperti bekerja dengan tim engineering: saya menetapkan scope dan mengambil keputusan, Claude Code menulis dan merapikan kodenya, dan setiap perubahan dirilis sebagai versi bernomor.' },
+          { type: 'flow', title: 'Apps Script, versi demi versi (31 Okt – 5 Nov)', caption: 'Sebelas versi dalam enam hari, dari V20.0.0 sampai V20.1.0.', steps: [
+            { title: 'V20.0.2', text: 'Migrasi skema yang berjalan sekali per versi' },
+            { title: 'V20.0.3', text: 'Filter outlet dan total item terjual di laporan penjualan' },
+            { title: 'V20.0.x', text: 'Penyegaran UI per halaman: kasir, stok, pre-order', highlight: true },
+            { title: 'V20.1.0', text: 'Desain ulang dashboard: tren 7 hari, produk terlaris, banding kemarin' },
+          ] },
+        ],
+      },
+      {
+        label: 'Keputusan',
+        title: 'Tulis ulang, atau pindahkan?',
+        blocks: [
+          { type: 'log', items: [
+            { tag: 'Chosen', title: 'Pindah ke web app, pertahankan logika Apps Script', text: 'Versi baru menjalankan kode server aslinya tanpa diubah, di atas lapisan kompatibilitas yang meniru Google Sheets, dengan Supabase Postgres sebagai database dan Vercel sebagai hosting.' },
+            { tag: 'Deprioritized', title: 'AI agent', text: 'Di versi Apps Script, fitur ini baru berupa placeholder tanpa model yang tersambung. Saya menundanya dari versi baru sampai scope-nya jelas.' },
+            { tag: 'Deprioritized', title: 'Pemesanan online', text: 'Dikeluarkan dari versi baru agar fokus ke kasir dan back office.' },
+            { tag: 'Chosen', title: 'Varian produk dengan stok sendiri', text: 'Satu dimensi varian, masing-masing dengan stok terpisah. Modifier menyusul nanti.' },
+            { tag: 'Chosen', title: 'Lokasi jual terpisah dari gudang', text: 'Outlet untuk berjualan, gudang untuk menyimpan stok. Model datanya sekarang memperlakukan keduanya sebagai hal yang berbeda.' },
+          ] },
+          { type: 'flow', title: 'Dari Apps Script ke web app', steps: [
+            { title: 'Code.gs asli', text: 'Logika server dipertahankan apa adanya' },
+            { title: 'Lapisan kompatibilitas', text: 'Meniru SpreadsheetApp dan google.script.run', highlight: true },
+            { title: 'Supabase Postgres', text: 'Sheet disimpan sebagai baris data' },
+            { title: 'Vercel + PWA', text: 'Web app yang bisa dipasang untuk kasir dan pemilik', highlight: true },
+          ] },
+        ],
+      },
+      {
+        label: 'Masalah → solusi',
+        title: 'Dari masalah ke solusi',
+        blocks: [
+          { type: 'log', items: [
+            { tag: 'Chosen', title: 'Layar berat → platform baru', text: 'Pindah dari Apps Script ke Vercel dan Supabase, sehingga laporan dan stok terbuka seperti halaman lainnya.' },
+            { tag: 'Chosen', title: 'Kota tercampur → outlet dan gudang', text: 'Filter kota diganti tiga outlet yang terhubung ke tiga gudang, dengan pengguna yang ditugaskan ke outlet.' },
+            { tag: 'Chosen', title: 'Bolak-balik ke back office → selesai di kasir', text: 'Pelanggan dan diskon manual ditambahkan dari layar kasir, dan struk dicetak dalam format thermal.' },
+            { tag: 'Chosen', title: 'Varian di alur terpisah → satu tombol tambah produk', text: 'Varian ditambahkan dari tombol yang sama, masing-masing dengan stok sendiri. Misalnya es jeruk reguler dan jumbo.' },
+            { tag: 'Chosen', title: 'Cek dashboard manual → ringkasan harian', text: 'Pemilik dan admin menerima penjualan hari itu secara otomatis, dan bisa mematikannya di pengaturan.' },
+          ] },
+        ],
+      },
+      {
+        label: 'Produknya',
+        title: 'Apa yang dilakukan tapp.in sekarang',
+        blocks: [
+          { type: 'tiles', items: [
+            { title: 'Kasir', text: 'Keranjang, diskon, pre-order, dan struk thermal', highlight: true },
+            { title: 'Stok', text: 'FIFO per batch di beberapa gudang: stok masuk, transfer, penyesuaian, riwayat' },
+            { title: 'Back office', text: 'Produk dan varian, pelanggan, diskon, pengguna, dan log audit' },
+            { title: 'Laporan', text: 'Dashboard dan laporan penjualan per outlet dan metode bayar', highlight: true },
+          ] },
+          { type: 'figure', file: 'tappin-cashier.jpg', alt: 'Layar kasir tapp.in dengan daftar produk di kiri dan pesanan bertotal Rp12.000 di kanan', caption: 'Kasir: ketuk produk, pilih pelanggan atau diskon, lalu bayar atau simpan sebagai pre-order.' },
+          { type: 'figures', items: [
+            { file: 'tappin-report.jpg', alt: 'Laporan penjualan tapp.in bulan ini dengan total, rincian metode bayar, dan daftar invoice', caption: 'Laporan penjualan, bisa difilter per periode dan outlet, dengan struk yang bisa dicetak per invoice.' },
+            { file: 'tappin-mobile.jpg', tall: true, alt: 'Kasir tapp.in di ponsel dengan dua produk di keranjang', caption: 'Kasir yang sama di ponsel, sebagai web app yang bisa dipasang.' },
+          ] },
+          { type: 'p', html: 'Setelah pindah, produknya terus bertambah: varian produk, diskon manual dan tambah pelanggan langsung dari kasir, notifikasi pembaruan, dan ringkasan penjualan harian untuk pemilik dan admin.' },
+        ],
+      },
+      {
+        label: OUTCOME,
+        title: 'Apa yang berubah',
+        blocks: [
+          { type: 'stats', items: [['Live', 'di Vercel sebagai tapp.in, web app yang bisa dipasang'], ['11', 'versi Apps Script dalam enam hari sebelum pindah'], ['1', 'sistem untuk 3 outlet dan 3 gudang'], ['Sama', 'logika server dengan versi Apps Script, berjalan di stack baru']] },
+        ],
+      },
+      {
+        label: LESSON,
+        title: 'Yang saya pelajari',
+        blocks: [
+          { type: 'p', html: 'Dengan AI sebagai rekan kerja, membangun jadi cepat. Memutuskan apa yang tidak dibangun, seperti AI agent dan pemesanan online, yang membuat produknya tetap nyaman dipakai orang di balik meja kasir.' },
+        ],
+      },
+    ],
+  },
 ];
