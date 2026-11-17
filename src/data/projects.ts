@@ -508,7 +508,7 @@ export const projects: Project[] = [
     opener: {
       kicker: 'Product builder · Retail POS · Built with Claude Code',
       hook: 'A spreadsheet POS rebuilt into <em>a live web app.</em>',
-      sub: 'A cashier, stock and reporting app for three outlets in Malang and Surabaya. I owned the product decisions and built it with Claude Code, first on Google Apps Script, then as a web app on Vercel.',
+      sub: 'A cashier, stock and reporting app for three outlets in Malang and Surabaya. I owned the product decisions and built it with Claude Code, first on Google Apps Script, then as a web app on Vercel. Built for Bekalin first, and for any small business taking under Rp500,000 a day.',
       role: ['tapp.in, formerly Bekalin POS · Bekalin Group · Oct–Nov 2026', 'Product owner & builder · Claude Code, Google Apps Script, Vercel, Supabase'],
       cover: { file: 'tappin-dashboard.jpg', position: 'top', alt: 'tapp.in dashboard: today’s sales, transactions and items sold, a 7-day sales chart, payment methods and latest transactions, with an outlet filter' },
     },
@@ -618,6 +618,19 @@ export const projects: Project[] = [
             { file: 'tappin-mobile.jpg', tall: true, alt: 'tapp.in cashier on a phone with two products in the cart', caption: 'The same cashier on a phone, as an installable web app.' },
           ] },
           { type: 'p', html: 'Since the move it has kept growing: product variants, a manual discount and new customers from the cashier, update notifications, and a daily sales summary sent to the owner and admins.' },
+        ],
+      },
+      {
+        label: 'Who it’s for',
+        title: 'Not just for Bekalin',
+        blocks: [
+          { type: 'p', html: 'Bekalin was the first user, not the only one in mind. tapp.in is built for small businesses whose takings stay under <span class="nw">Rp500,000</span> a day, and who want a real cashier app without installing one.' },
+          { type: 'tiles', items: [
+            { title: 'Small daily takings', text: 'Sized for SMEs selling under Rp500,000 a day', highlight: true },
+            { title: 'Nothing to install', text: 'A PWA: open it in the browser, add it to the home screen', highlight: true },
+            { title: 'Feels like an app', text: 'Looks and works like a real app, but much lighter' },
+            { title: 'Not for big volume', text: 'Deliberately simple; large, high-value transactions are out of scope' },
+          ] },
         ],
       },
       {

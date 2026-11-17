@@ -461,7 +461,7 @@ export const projects: Project[] = [
     opener: {
       kicker: 'Product builder · POS ritel · Dibangun dengan Claude Code',
       hook: 'POS berbasis spreadsheet, dibangun ulang menjadi <em>web app yang live.</em>',
-      sub: 'Aplikasi kasir, stok, dan laporan untuk tiga outlet di Malang dan Surabaya. Saya memegang keputusan produknya dan membangunnya bersama Claude Code, awalnya di Google Apps Script, lalu sebagai web app di Vercel.',
+      sub: 'Aplikasi kasir, stok, dan laporan untuk tiga outlet di Malang dan Surabaya. Saya memegang keputusan produknya dan membangunnya bersama Claude Code, awalnya di Google Apps Script, lalu sebagai web app di Vercel. Dibuat untuk Bekalin dulu, dan untuk usaha kecil mana pun dengan omzet di bawah Rp500.000 per hari.',
       role: ['tapp.in, sebelumnya Bekalin POS · Bekalin Group · Okt–Nov 2026', 'Product owner & builder · Claude Code, Google Apps Script, Vercel, Supabase'],
       cover: { file: 'tappin-dashboard.jpg', position: 'top', alt: 'Dashboard tapp.in: penjualan hari ini, transaksi, dan item terjual, grafik penjualan 7 hari, metode pembayaran, dan transaksi terbaru, dengan filter outlet' },
     },
@@ -571,6 +571,19 @@ export const projects: Project[] = [
             { file: 'tappin-mobile.jpg', tall: true, alt: 'Kasir tapp.in di ponsel dengan dua produk di keranjang', caption: 'Kasir yang sama di ponsel, sebagai web app yang bisa dipasang.' },
           ] },
           { type: 'p', html: 'Setelah pindah, produknya terus bertambah: varian produk, diskon manual dan tambah pelanggan langsung dari kasir, notifikasi pembaruan, dan ringkasan penjualan harian untuk pemilik dan admin.' },
+        ],
+      },
+      {
+        label: 'Untuk siapa',
+        title: 'Bukan hanya untuk Bekalin',
+        blocks: [
+          { type: 'p', html: 'Bekalin adalah pengguna pertama, bukan satu-satunya yang dibidik. tapp.in dibuat untuk usaha kecil dengan omzet di bawah <span class="nw">Rp500.000</span> per hari, yang ingin aplikasi kasir sungguhan tanpa perlu menginstalnya.' },
+          { type: 'tiles', items: [
+            { title: 'Omzet harian kecil', text: 'Pas untuk UMKM dengan penjualan di bawah Rp500.000 per hari', highlight: true },
+            { title: 'Tanpa instalasi', text: 'Berupa PWA: buka di browser, tambahkan ke layar utama', highlight: true },
+            { title: 'Terasa seperti aplikasi', text: 'Tampil dan bekerja seperti aplikasi sungguhan, tapi jauh lebih ringan' },
+            { title: 'Bukan untuk volume besar', text: 'Sengaja dibuat sederhana; transaksi besar bernilai tinggi di luar cakupan' },
+          ] },
         ],
       },
       {
