@@ -11,20 +11,95 @@ const OUTCOME = 'Hasil';
 
 export const projects: Project[] = [
   {
+    slug: 'ai-erp',
+    short: 'AI & ERP',
+    num: '01',
+    accent: '#5B9BFF',
+    card: {
+      kicker: 'AI & ERP · B2B SaaS',
+      hook: 'Quote-to-shipment dari <span class="nw">30–50</span> menjadi <span class="nw">15–20</span> menit',
+      company: 'eDOT · 2025–2026',
+      role: 'Product Manager, AI ERP',
+    },
+    opener: {
+      kicker: '01 · AI & ERP · B2B SaaS',
+      hook: 'Quote-to-shipment dari <em><span class="nw">30–50</span> menjadi <span class="nw">15–20</span> menit.</em>',
+      sub: 'Pengguna tidak butuh produk AI lagi. Mereka butuh ERP yang sudah mereka pakai berhenti terasa rumit.',
+      role: ['eDOT · Des 2025–Jul 2026 · Remote', 'Product Manager, AI ERP (edic & esuite) · Klien: Nabati Group'],
+      cover: { file: 'edot-edic-cover.jpg', alt: 'Landing page edic: AI data analyst yang bisa diajak ngobrol, dengan kotak prompt Ask edic dan Agent Mode' },
+    },
+    beats: [
+      {
+        label: 'Konteks',
+        title: 'Dua produk, satu tujuan',
+        blocks: [
+          { type: 'p', html: 'eDOT membangun <b>esuite</b>, ERP manajemen distribusi, dan <b>edic</b>, AI data analyst yang bisa diajak bicara. Tujuannya: membawa AI agent dan asisten ke dalam ERP agar proses lebih lancar dan biaya operasional di gudang-gudang Nabati Group turun.' },
+          { type: 'figure', file: 'edot-esuite.jpg', alt: 'Antarmuka esuite, ERP manajemen distribusi', caption: 'esuite, ERP manajemen distribusi yang dipakai di gudang-gudang Nabati Group.' },
+        ],
+      },
+      {
+        label: 'Masalahnya',
+        title: 'Jadi, apa yang salah?',
+        blocks: [
+          { type: 'takeaway', label: 'Kata pengguna', text: 'ERP-nya punya terlalu banyak fitur, sampai menyelesaikan satu proses saja terasa seperti kerja berat.' },
+          { type: 'p', html: 'Awalnya kami membangun AI sebagai produk tersendiri. Berbicara dengan pengguna Nabati menunjukkan bahwa masalah sebenarnya adalah kerumitan ERP, bukan ketiadaan alat AI.' },
+        ],
+      },
+      {
+        label: 'Keputusan',
+        title: 'Pivot',
+        blocks: [
+          { type: 'p', html: 'Bersama PM lain, saya mengevaluasi sebagian besar model AI utama, membandingkan kemampuan per use case dengan konsumsi token, karena model bisnisnya berbasis pemakaian.' },
+          { type: 'log', items: [
+            { tag: 'Chosen', title: 'Hubungkan AI ke alur kerja ERP yang sudah ada', text: 'Menjawab keluhan yang benar-benar disebut pengguna, dan menambah nilai pada produk yang sudah dibayar pelanggan.' },
+            { tag: 'Deprioritized', title: 'AI sebagai produk terpisah', text: 'Titik awal kami. Cara ini tidak akan menyelesaikan kerumitan ERP.' },
+          ] },
+          { type: 'flow', title: 'Dari AI terpisah ke AI di dalam ERP', steps: [
+            { title: 'Pengguna', text: 'Menyebutkan kebutuhannya tanpa harus menelusuri menu' },
+            { title: 'edic', text: 'Menyiapkan dan merangkum prosesnya', highlight: true },
+            { title: 'esuite', text: 'Dari quotation ke shipment, dari transaksi ke keuangan' },
+          ] },
+          { type: 'p', html: 'Kami menjalankan proof of concept di gudang-gudang di Jawa, lalu meluncurkannya ke sebagian besar gudang Nabati di seluruh Indonesia.' },
+        ],
+      },
+      {
+        label: OUTCOME,
+        title: 'Apa yang berubah',
+        blocks: [
+          { type: 'two', left: [
+            { type: 'compare', charts: [
+              { title: 'Siklus quote-to-shipment', max: 50, caption: 'Masih terus membaik seiring AI dan penggunanya sama-sama belajar.', ariaLabel: 'Siklus quote-to-shipment: sebelum 30 sampai 50 menit, sesudah 15 sampai 20 menit', rows: [
+                { label: 'Sebelum', value: '30–50 mnt', lo: 30, hi: 50, kind: 'before' }, { label: 'Sesudah', value: '15–20 mnt', lo: 15, hi: 20, kind: 'after' }] },
+            ] },
+          ], right: [
+            { type: 'stats', items: [['20–25', 'fitur baru dirilis'], ['~40%', 'di antaranya fitur besar, dari transaksi sampai keuangan']] },
+          ] },
+        ],
+      },
+      {
+        label: LESSON,
+        title: 'Yang saya pelajari',
+        blocks: [
+          { type: 'p', html: 'Pekerjaan AI yang paling bernilai bukan memilih model. Melainkan menemukan di mana pengguna tersendat, lalu menaruh AI tepat di situ.' },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'mining',
     short: 'Pertambangan',
-    num: '01',
+    num: '02',
     accent: '#F2A93B',
     card: {
       kicker: 'Tambang batu bara · Transformasi digital',
-      hook: 'Insiden kelelahan turun dari <span class="nw">8–20</span> menjadi <span class="nw">1–3</span> per bulan',
+      hook: 'Adopsi sistem dari 15% ke 65% dalam enam bulan',
       company: 'Minergo Visi Maxima (Sinarmas Mining) · 2025',
       role: 'Lead Digital Transformation',
     },
     opener: {
-      kicker: '01 · Tambang batu bara · Transformasi digital',
-      hook: 'Insiden kelelahan turun dari <em><span class="nw">8–20</span> menjadi <span class="nw">1–3</span></em> per bulan.',
-      sub: 'Bagaimana kami membuat 2.500 pengemudi truk angkut memakai sistem keselamatan yang tidak pernah mereka minta, lalu menghubungkan truk listrik ke sistem yang sama.',
+      kicker: '02 · Tambang batu bara · Transformasi digital',
+      hook: 'Adopsi sistem dari <em><span class="nw">15% ke 65%</span></em> dalam enam bulan.',
+      sub: 'Bagaimana kami membawa 2.500 pengemudi truk angkut, para pengawas lapangan, dan 10 mitra hauling ke satu sistem digital yang tidak pernah mereka minta, lalu menghubungkan truk listrik ke sistem yang sama.',
       role: ['Minergo Visi Maxima, bagian dari Sinarmas Mining · Apr–Nov 2025', 'Lead Digital Transformation & Implementation Catalyst'],
       cover: { file: 'mining-cover.jpg', alt: 'Ilustrasi stasiun pengisian daya dump truck listrik dengan kanopi baja oranye melengkung' },
     },
@@ -42,7 +117,7 @@ export const projects: Project[] = [
         title: 'Jadi, apa yang salah?',
         blocks: [
           { type: 'problems', items: [
-            ['Ada yang celaka', 'Kelelahan pengemudi menyebabkan 8–20 insiden dan korban jiwa setiap bulan.'],
+            ['Sistem yang jarang dipakai', 'Hanya 15% dari orang yang seharusnya memakai sistem benar-benar menggunakannya.'],
             ['Sepuluh cara kerja', 'Setiap vendor punya SOP dan dokumen berbeda, jadi datanya tidak pernah cocok.'],
             ['Serba kertas', 'Setiap siklus angkut dicatat di kertas, sehingga pembayaran vendor dan rekonsiliasi makan waktu 5 hari kerja.'],
           ] },
@@ -80,14 +155,55 @@ export const projects: Project[] = [
         label: 'Adopsi',
         title: 'Bagian tersulitnya bukan teknologi, tapi manusianya.',
         blocks: [
-          { type: 'p', html: 'Pengemudi bekerja dalam shift panjang dengan kondisi berat, dan perilakunya tidak seperti pengguna software pada umumnya. Ini yang membuat mereka mau berubah:' },
-          { type: 'ul', items: [
-            'Pelatihan berulang dalam berbagai format, dari manajer sampai pengemudi dan supervisor.',
-            'Evaluasi langsung di dalam kabin truk.',
-            'Program reward untuk pengemudi.',
-            'Kunjungan lapangan rutin, dengan temuan yang langsung diteruskan ke tim developer.',
+          { type: 'p', html: 'Penolakan terbesar bukan pada satu fitur, tapi pada digitalisasi itu sendiri. Pengemudi bekerja dalam shift panjang dengan kondisi berat dan tidak berperilaku seperti pengguna software pada umumnya. Karena itu kami mendekati setiap kelompok lewat benefit yang mereka dapat, bukan membuat mereka tidak nyaman dengan hukuman.' },
+          { type: 'takeaway', label: 'Prinsip', text: 'Benefit, bukan hukuman. Selama orang belum memakai sistemnya, metrik lain hanyalah noise.' },
+          { type: 'flow', title: 'Tiga lapisan, satu rollout', steps: [
+            { title: 'Pengemudi', text: '2.500 orang yang memakai aplikasi dan perangkat di kabin setiap shift', highlight: true },
+            { title: 'Pengawas lapangan', text: 'Memastikan setiap tahap siklus digital terjadi' },
+            { title: 'Mitra hauling', text: '10 vendor, masing-masing dengan SOP dan orangnya sendiri', highlight: true },
           ] },
-          { type: 'takeaway', label: 'Prinsip', text: 'Adopsi dulu. Selama orang belum memakai sistemnya, metrik lain hanyalah noise.' },
+        ],
+      },
+      {
+        label: 'Pengemudi',
+        title: '2.500 pengemudi: tunjukkan apa untungnya bagi mereka',
+        blocks: [
+          { type: 'p', html: 'Pelatihannya harus cocok untuk orang yang menghabiskan harinya di kabin, bukan di meja:' },
+          { type: 'ul', items: [
+            '<b>Video pelatihan</b> dan sesi <b>train-the-trainer</b>.',
+            '<b>Observasi langsung di unit</b>, di dalam kabin truk.',
+            '<b>Mengikuti sesi sebelum unit mulai beroperasi</b> dengan sistem.',
+            '<b>Pre-test dan post-test</b> untuk memastikan apa yang benar-benar dipahami.',
+          ] },
+          { type: 'p', html: '<b>Reward kuartalan</b> diberikan kepada pengemudi berdasarkan keaktifan mereka memakai perangkat di kabin dan aplikasi pengemudi selama kuartal tersebut.' },
+        ],
+      },
+      {
+        label: 'Pengawas lapangan',
+        title: 'Pengawas: orang yang didengar pengemudi',
+        blocks: [
+          { type: 'p', html: 'Pengawas lapangan memastikan seluruh siklus digitalisasi terpenuhi, shift demi shift, sekaligus menjadi perpanjangan tangan sistem di lapangan untuk memastikan potensi bahaya tidak berubah menjadi insiden.' },
+          { type: 'p', html: 'Mereka biasanya sudah lebih mengerti fungsi dan kebutuhan digitalisasi ini, sehingga ikut mendorongnya di dalam tim mereka sendiri.' },
+        ],
+      },
+      {
+        label: 'Mitra hauling',
+        title: '10 mitra: mulai dari yang paling mungkin patuh',
+        blocks: [
+          { type: 'flow', title: 'Bagaimana adopsi menyebar ke para mitra', steps: [
+            { title: 'Observasi', text: 'Cari mitra dengan potensi kepatuhan tertinggi' },
+            { title: 'Pilot', text: 'Implementasi ke mereka lebih dulu, di tiga bulan pertama', highlight: true },
+            { title: 'Jadi contoh', text: 'Mitra lain melihat hasilnya, dan antarmitra saling berkomunikasi' },
+            { title: 'Jadikan aturan', text: 'Bersama BIB, SK mewajibkan penggunaan sistem ini', highlight: true },
+          ] },
+          { type: 'p', html: 'Semua ini tidak akan jalan tanpa dua pemangku kepentingan yang tidak bisa ditawar: Borneo Indobara dan Sinarmas Mining. Sebagai pelaksana digitalisasi, tugas kami adalah memberi masukan dari lapangan agar seluruh proses berjalan sesuai harapan mereka, dan integrasi antarproduk serta fitur berjalan dengan baik.' },
+        ],
+      },
+      {
+        label: 'Mengukur adopsi',
+        title: 'Memantau adopsi seperti funnel',
+        blocks: [
+          { type: 'p', html: 'Sebuah matriks otomatis menampilkan adopsi sebagai funnel yang detail. Kami memakainya untuk analisis yang detail, menghitung potensi risiko dan mitigasinya, dan menentukan strategi.' },
           { type: 'figure', file: 'mining-command-center.jpg', alt: 'Dashboard command center FAMOUS 2.0 dengan peringatan SOS, kesiapan kerja, inspeksi, dan heatmap armada', caption: 'Command center FAMOUS 2.0: peringatan SOS langsung, kesiapan kerja pengemudi, inspeksi harian sebelum pakai (P2H), dan heatmap armada.' },
         ],
       },
@@ -112,14 +228,14 @@ export const projects: Project[] = [
         title: 'Apa yang berubah',
         blocks: [
           { type: 'compare', charts: [
-            { title: 'Insiden kelelahan / bulan', max: 20, ariaLabel: 'Insiden kelelahan per bulan: sebelum 8 sampai 20, sesudah 1 sampai 3', rows: [
-              { label: 'Sebelum', value: '8–20', lo: 8, hi: 20, kind: 'before' }, { label: 'Sesudah', value: '1–3', lo: 1, hi: 3, kind: 'after' }] },
             { title: 'Adopsi sistem', max: 100, ariaLabel: 'Adopsi sistem: sebelum 15 persen, setelah 6 bulan 65 persen', rows: [
               { label: 'Sebelum', value: '15%', lo: 15, kind: 'before' }, { label: '6 bulan', value: '65%', lo: 65, kind: 'after' }] },
             { title: 'Persiapan pengemudi per shift', max: 40, ariaLabel: 'Persiapan pengemudi per shift: sebelum 30 sampai 40 menit, sesudah 10 menit', rows: [
               { label: 'Sebelum', value: '30–40 mnt', lo: 30, hi: 40, kind: 'before' }, { label: 'Sesudah', value: '10 mnt', lo: 10, kind: 'after' }] },
             { title: 'Rekonsiliasi bulanan', max: 5, ariaLabel: 'Rekonsiliasi bulanan: sebelum 5 hari di kertas, sesudah 2 hari', rows: [
               { label: 'Sebelum', value: '5 hari, kertas', lo: 5, kind: 'before' }, { label: 'Sesudah', value: '2 hari', lo: 2, kind: 'after' }] },
+            { title: 'Insiden kelelahan / bulan', max: 20, ariaLabel: 'Insiden kelelahan per bulan: sebelum 8 sampai 20, sesudah 1 sampai 3', rows: [
+              { label: 'Sebelum', value: '8–20', lo: 8, hi: 20, kind: 'before' }, { label: 'Sesudah', value: '1–3', lo: 1, hi: 3, kind: 'after' }] },
           ] },
         ],
       },
@@ -135,7 +251,7 @@ export const projects: Project[] = [
   {
     slug: 'fintech',
     short: 'Fintech',
-    num: '02',
+    num: '03',
     accent: '#A07BFF',
     card: {
       kicker: 'Fintech telekomunikasi · Turnaround',
@@ -144,7 +260,7 @@ export const projects: Project[] = [
       role: 'Head of Product',
     },
     opener: {
-      kicker: '02 · Fintech telekomunikasi · Product turnaround',
+      kicker: '03 · Fintech telekomunikasi · Product turnaround',
       hook: 'Transaksi harian kembali dari <em>IDR <span class="nw">300–500M</span> ke 1B.</em>',
       sub: 'Aplikasi berusia sepuluh tahun kalah dari pesaing yang lebih baru. Kami membangun ulang produk, platform, dan brand-nya dalam enam bulan.',
       role: ['ViaPulsa Global Indonesia · Feb 2023–Mar 2025', 'Head of Product (Product Director), memimpin 45 orang'],
@@ -216,81 +332,6 @@ export const projects: Project[] = [
         title: 'Yang saya pelajari',
         blocks: [
           { type: 'p', html: 'Revamp besar-besaran bisa berhasil, tapi pengguna lama merasakan setiap perubahan. Lain kali, saya akan merencanakan perpindahan pengguna lama sama cermatnya dengan fitur barunya.' },
-        ],
-      },
-    ],
-  },
-  {
-    slug: 'ai-erp',
-    short: 'AI & ERP',
-    num: '03',
-    accent: '#5B9BFF',
-    card: {
-      kicker: 'AI & ERP · B2B SaaS',
-      hook: 'Quote-to-shipment dari <span class="nw">30–50</span> menjadi <span class="nw">15–20</span> menit',
-      company: 'eDOT · 2025–2026',
-      role: 'Product Manager, AI ERP',
-    },
-    opener: {
-      kicker: '03 · AI & ERP · B2B SaaS',
-      hook: 'Quote-to-shipment dari <em><span class="nw">30–50</span> menjadi <span class="nw">15–20</span> menit.</em>',
-      sub: 'Pengguna tidak butuh produk AI lagi. Mereka butuh ERP yang sudah mereka pakai berhenti terasa rumit.',
-      role: ['eDOT · Des 2025–Jul 2026 · Remote', 'Product Manager, AI ERP (edic & esuite) · Klien: Nabati Group'],
-      cover: { file: 'edot-edic-cover.jpg', alt: 'Landing page edic: AI data analyst yang bisa diajak ngobrol, dengan kotak prompt Ask edic dan Agent Mode' },
-    },
-    beats: [
-      {
-        label: 'Konteks',
-        title: 'Dua produk, satu tujuan',
-        blocks: [
-          { type: 'p', html: 'eDOT membangun <b>esuite</b>, ERP manajemen distribusi, dan <b>edic</b>, AI data analyst yang bisa diajak bicara. Tujuannya: membawa AI agent dan asisten ke dalam ERP agar proses lebih lancar dan biaya operasional di gudang-gudang Nabati Group turun.' },
-          { type: 'figure', file: 'edot-esuite.jpg', alt: 'Antarmuka esuite, ERP manajemen distribusi', caption: 'esuite, ERP manajemen distribusi yang dipakai di gudang-gudang Nabati Group.' },
-        ],
-      },
-      {
-        label: 'Masalahnya',
-        title: 'Jadi, apa yang salah?',
-        blocks: [
-          { type: 'takeaway', label: 'Kata pengguna', text: 'ERP-nya punya terlalu banyak fitur, sampai menyelesaikan satu proses saja terasa seperti kerja berat.' },
-          { type: 'p', html: 'Awalnya kami membangun AI sebagai produk tersendiri. Berbicara dengan pengguna Nabati menunjukkan bahwa masalah sebenarnya adalah kerumitan ERP, bukan ketiadaan alat AI.' },
-        ],
-      },
-      {
-        label: 'Keputusan',
-        title: 'Pivot',
-        blocks: [
-          { type: 'p', html: 'Bersama PM lain, saya mengevaluasi sebagian besar model AI utama, membandingkan kemampuan per use case dengan konsumsi token, karena model bisnisnya berbasis pemakaian.' },
-          { type: 'log', items: [
-            { tag: 'Chosen', title: 'Hubungkan AI ke alur kerja ERP yang sudah ada', text: 'Menjawab keluhan yang benar-benar disebut pengguna, dan menambah nilai pada produk yang sudah dibayar pelanggan.' },
-            { tag: 'Deprioritized', title: 'AI sebagai produk terpisah', text: 'Titik awal kami. Cara ini tidak akan menyelesaikan kerumitan ERP.' },
-          ] },
-          { type: 'flow', title: 'Dari AI terpisah ke AI di dalam ERP', steps: [
-            { title: 'Pengguna', text: 'Menyebutkan kebutuhannya tanpa harus menelusuri menu' },
-            { title: 'edic', text: 'Menyiapkan dan merangkum prosesnya', highlight: true },
-            { title: 'esuite', text: 'Dari quotation ke shipment, dari transaksi ke keuangan' },
-          ] },
-          { type: 'p', html: 'Kami menjalankan proof of concept di gudang-gudang di Jawa, lalu meluncurkannya ke sebagian besar gudang Nabati di seluruh Indonesia.' },
-        ],
-      },
-      {
-        label: OUTCOME,
-        title: 'Apa yang berubah',
-        blocks: [
-          { type: 'two', left: [
-            { type: 'compare', charts: [
-              { title: 'Siklus quote-to-shipment', max: 50, caption: 'Masih terus membaik seiring AI dan penggunanya sama-sama belajar.', ariaLabel: 'Siklus quote-to-shipment: sebelum 30 sampai 50 menit, sesudah 15 sampai 20 menit', rows: [
-                { label: 'Sebelum', value: '30–50 mnt', lo: 30, hi: 50, kind: 'before' }, { label: 'Sesudah', value: '15–20 mnt', lo: 15, hi: 20, kind: 'after' }] },
-            ] },
-          ], right: [
-            { type: 'stats', items: [['20–25', 'fitur baru dirilis'], ['~40%', 'di antaranya fitur besar, dari transaksi sampai keuangan']] },
-          ] },
-        ],
-      },
-      {
-        label: LESSON,
-        title: 'Yang saya pelajari',
-        blocks: [
-          { type: 'p', html: 'Pekerjaan AI yang paling bernilai bukan memilih model. Melainkan menemukan di mana pengguna tersendat, lalu menaruh AI tepat di situ.' },
         ],
       },
     ],

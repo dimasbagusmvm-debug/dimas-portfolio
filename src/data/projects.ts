@@ -58,20 +58,95 @@ const OUTCOME = 'Outcome';
 
 export const projects: Project[] = [
   {
+    slug: 'ai-erp',
+    short: 'AI & ERP',
+    num: '01',
+    accent: '#5B9BFF',
+    card: {
+      kicker: 'AI & ERP · B2B SaaS',
+      hook: 'Quote-to-shipment from <span class="nw">30–50</span> to <span class="nw">15–20</span> minutes',
+      company: 'eDOT · 2025–2026',
+      role: 'Product Manager, AI ERP',
+    },
+    opener: {
+      kicker: '01 · AI & ERP · B2B SaaS',
+      hook: 'Quote-to-shipment from <em><span class="nw">30–50</span> to <span class="nw">15–20</span> minutes.</em>',
+      sub: 'Users didn’t need another AI product. They needed the ERP they already had to stop feeling complicated.',
+      role: ['eDOT · Dec 2025–Jul 2026 · Remote', 'Product Manager, AI ERP (edic & esuite) · Client: Nabati Group'],
+      cover: { file: 'edot-edic-cover.jpg', alt: 'edic landing page: an AI data analyst you chat with, with an Ask edic prompt box and Agent Mode' },
+    },
+    beats: [
+      {
+        label: 'Context',
+        title: 'Two products, one goal',
+        blocks: [
+          { type: 'p', html: 'eDOT builds <b>esuite</b>, a distribution management ERP, and <b>edic</b>, an AI data analyst you can talk to. The goal: bring AI agents and assistants into the ERP to make processes smoother and cut operational cost at Nabati Group’s warehouses.' },
+          { type: 'figure', file: 'edot-esuite.jpg', alt: 'esuite distribution management ERP interface', caption: 'esuite, the distribution management ERP used across Nabati Group warehouses.' },
+        ],
+      },
+      {
+        label: 'The problem',
+        title: 'So what went wrong?',
+        blocks: [
+          { type: 'takeaway', label: 'Users said', text: 'The ERP has so many features that just getting through a process feels like work.' },
+          { type: 'p', html: 'We had started by building AI as its own thing. Talking to Nabati users showed us the real pain was ERP complexity, not a missing AI tool.' },
+        ],
+      },
+      {
+        label: 'Decisions',
+        title: 'The pivot',
+        blocks: [
+          { type: 'p', html: 'Together with other PMs, I evaluated most major AI models, comparing capability per use case against token consumption, since the business model is usage-based.' },
+          { type: 'log', items: [
+            { tag: 'Chosen', title: 'Connect AI into existing ERP workflows', text: 'Hits the pain users actually named, and adds value to a product customers already pay for.' },
+            { tag: 'Deprioritized', title: 'AI as a separate product', text: 'Our starting point. It would not have fixed ERP complexity.' },
+          ] },
+          { type: 'flow', title: 'From standalone AI to AI inside the ERP', steps: [
+            { title: 'User', text: 'Says what they need instead of digging through menus' },
+            { title: 'edic', text: 'Sets up and recaps the process', highlight: true },
+            { title: 'esuite', text: 'Quotation to shipment, transactions to finance' },
+          ] },
+          { type: 'p', html: 'We ran the proof of concept in warehouses on Java, then rolled out to most Nabati warehouses across Indonesia.' },
+        ],
+      },
+      {
+        label: OUTCOME,
+        title: 'What changed',
+        blocks: [
+          { type: 'two', left: [
+            { type: 'compare', charts: [
+              { title: 'Quote-to-shipment cycle', max: 50, caption: 'Still improving as both the AI and its users keep learning.', ariaLabel: 'Quote-to-shipment cycle: before 30 to 50 minutes, after 15 to 20 minutes', rows: [
+                { label: 'Before', value: '30–50 min', lo: 30, hi: 50, kind: 'before' }, { label: 'After', value: '15–20 min', lo: 15, hi: 20, kind: 'after' }] },
+            ] },
+          ], right: [
+            { type: 'stats', items: [['20–25', 'new features shipped'], ['~40%', 'of them major, from transactions to finance']] },
+          ] },
+        ],
+      },
+      {
+        label: LESSON,
+        title: 'What I took away',
+        blocks: [
+          { type: 'p', html: 'The most valuable AI work wasn’t choosing the model. It was finding where users got stuck and putting AI exactly there.' },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'mining',
     short: 'Mining',
-    num: '01',
+    num: '02',
     accent: '#F2A93B',
     card: {
       kicker: 'Coal mining · Digital transformation',
-      hook: 'Fatigue incidents down from <span class="nw">8–20</span> to <span class="nw">1–3</span> a month',
+      hook: 'System adoption from 15% to 65% in six months',
       company: 'Minergo Visi Maxima (Sinarmas Mining) · 2025',
       role: 'Lead Digital Transformation',
     },
     opener: {
-      kicker: '01 · Coal mining · Digital transformation',
-      hook: 'Fatigue incidents down from <em><span class="nw">8–20</span> to <span class="nw">1–3</span></em> a month.',
-      sub: 'How we got 2,500 haul truck drivers to adopt a safety system they never asked for, and then plugged electric trucks into it.',
+      kicker: '02 · Coal mining · Digital transformation',
+      hook: 'System adoption from <em><span class="nw">15% to 65%</span></em> in six months.',
+      sub: 'How we brought 2,500 haul truck drivers, their field supervisors and 10 hauling partners onto one digital system none of them asked for, and then plugged electric trucks into it.',
       role: ['Minergo Visi Maxima, part of Sinarmas Mining · Apr–Nov 2025', 'Lead Digital Transformation & Implementation Catalyst'],
       cover: { file: 'mining-cover.jpg', alt: 'Illustration of an electric dump truck charging station with arched orange steel canopies' },
     },
@@ -89,7 +164,7 @@ export const projects: Project[] = [
         title: 'So what went wrong?',
         blocks: [
           { type: 'problems', items: [
-            ['People were getting hurt', 'Driver fatigue caused 8–20 incidents and fatalities every month.'],
+            ['A system few people used', 'Only 15% of the people who should have been on the system actually used it.'],
             ['Ten ways of working', 'Every vendor had different SOPs and documents, so data never lined up.'],
             ['Paper all the way', 'Each haul cycle was logged on paper, so paying vendors and reconciling took 5 working days.'],
           ] },
@@ -127,14 +202,55 @@ export const projects: Project[] = [
         label: 'Adoption',
         title: 'The hardest part wasn’t the tech. It was people.',
         blocks: [
-          { type: 'p', html: 'Drivers work long shifts in tough conditions, and they don’t behave like typical software users. Here’s what moved them:' },
-          { type: 'ul', items: [
-            'Recurring training in several formats, from managers down to drivers and supervisors.',
-            'Evaluations done right inside the truck cabin.',
-            'A reward program for drivers.',
-            'Regular field visits, with findings fed straight back to the dev team.',
+          { type: 'p', html: 'The biggest resistance wasn’t to a feature. It was to going digital at all. Drivers work long shifts in tough conditions and don’t behave like typical software users, so we led with what each group would gain, instead of making them uncomfortable with punishment.' },
+          { type: 'takeaway', label: 'Rule', text: 'Benefits, not punishment. Until people used the system, every other metric was noise.' },
+          { type: 'flow', title: 'Three layers, one rollout', steps: [
+            { title: 'Drivers', text: '2,500 people who use the app and the in-cab devices every shift', highlight: true },
+            { title: 'Field supervisors', text: 'Make sure every step of the digital cycle happens' },
+            { title: 'Hauling partners', text: '10 vendors, each with its own SOPs and people', highlight: true },
           ] },
-          { type: 'takeaway', label: 'Rule', text: 'Adoption first. Until people used the system, every other metric was noise.' },
+        ],
+      },
+      {
+        label: 'Drivers',
+        title: '2,500 drivers: show them what’s in it for them',
+        blocks: [
+          { type: 'p', html: 'Training had to fit people who spend their day in a cab, not at a desk:' },
+          { type: 'ul', items: [
+            '<b>Video lessons</b> and <b>train-the-trainer</b> sessions.',
+            '<b>Observation on the unit</b>, right inside the truck cabin.',
+            '<b>Sessions before a unit started running</b> on the system.',
+            '<b>Pre- and post-tests</b> to check what actually stuck.',
+          ] },
+          { type: 'p', html: 'A <b>quarterly reward</b> went to drivers based on how actively they used the in-cab devices and the driver app that quarter.' },
+        ],
+      },
+      {
+        label: 'Field supervisors',
+        title: 'Supervisors: the people drivers listen to',
+        blocks: [
+          { type: 'p', html: 'Field supervisors made sure the whole digital cycle was completed, shift after shift, and acted as an extension of the system on the ground to keep hazards from turning into incidents.' },
+          { type: 'p', html: 'They usually already understood what digitalization was for and why it was needed, so they encouraged it inside their own teams.' },
+        ],
+      },
+      {
+        label: 'Hauling partners',
+        title: '10 partners: start with the ones most likely to follow',
+        blocks: [
+          { type: 'flow', title: 'How adoption spread across partners', steps: [
+            { title: 'Observe', text: 'Find the partners with the highest potential to comply' },
+            { title: 'Pilot', text: 'Roll out to them first, in the first three months', highlight: true },
+            { title: 'Set the example', text: 'Other partners see it working, and partners talk to each other' },
+            { title: 'Make it the rule', text: 'With BIB, a decree (SK) makes using the system mandatory', highlight: true },
+          ] },
+          { type: 'p', html: 'None of this worked without the two stakeholders no one negotiates with: Borneo Indobara and Sinarmas Mining. As the team carrying out the digitalization, our job was to feed back what we saw in the field so every process ran as they expected, and the products and features worked together.' },
+        ],
+      },
+      {
+        label: 'Measuring adoption',
+        title: 'Watching adoption like a funnel',
+        blocks: [
+          { type: 'p', html: 'An automatic matrix showed adoption as a detailed funnel. We used it for detailed analysis, to estimate risks and the mitigations they needed, and to set the strategy.' },
           { type: 'figure', file: 'mining-command-center.jpg', alt: 'FAMOUS 2.0 command center dashboard with SOS alerts, readiness, inspections and a fleet heatmap', caption: 'FAMOUS 2.0 command center: live SOS alerts, driver work readiness, daily pre-use inspections (P2H) and a fleet heatmap.' },
         ],
       },
@@ -159,14 +275,14 @@ export const projects: Project[] = [
         title: 'What changed',
         blocks: [
           { type: 'compare', charts: [
-            { title: 'Fatigue incidents / month', max: 20, ariaLabel: 'Fatigue incidents per month: before 8 to 20, after 1 to 3', rows: [
-              { label: 'Before', value: '8–20', lo: 8, hi: 20, kind: 'before' }, { label: 'After', value: '1–3', lo: 1, hi: 3, kind: 'after' }] },
             { title: 'System adoption', max: 100, ariaLabel: 'System adoption: before 15 percent, after 6 months 65 percent', rows: [
               { label: 'Before', value: '15%', lo: 15, kind: 'before' }, { label: '6 months', value: '65%', lo: 65, kind: 'after' }] },
             { title: 'Driver prep per shift', max: 40, ariaLabel: 'Driver prep per shift: before 30 to 40 minutes, after 10 minutes', rows: [
               { label: 'Before', value: '30–40 min', lo: 30, hi: 40, kind: 'before' }, { label: 'After', value: '10 min', lo: 10, kind: 'after' }] },
             { title: 'Monthly reconciliation', max: 5, ariaLabel: 'Monthly reconciliation: before 5 days on paper, after 2 days', rows: [
               { label: 'Before', value: '5 days, paper', lo: 5, kind: 'before' }, { label: 'After', value: '2 days', lo: 2, kind: 'after' }] },
+            { title: 'Fatigue incidents / month', max: 20, ariaLabel: 'Fatigue incidents per month: before 8 to 20, after 1 to 3', rows: [
+              { label: 'Before', value: '8–20', lo: 8, hi: 20, kind: 'before' }, { label: 'After', value: '1–3', lo: 1, hi: 3, kind: 'after' }] },
           ] },
         ],
       },
@@ -182,7 +298,7 @@ export const projects: Project[] = [
   {
     slug: 'fintech',
     short: 'Fintech',
-    num: '02',
+    num: '03',
     accent: '#A07BFF',
     card: {
       kicker: 'Telecom fintech · Turnaround',
@@ -191,7 +307,7 @@ export const projects: Project[] = [
       role: 'Head of Product',
     },
     opener: {
-      kicker: '02 · Telecom fintech · Product turnaround',
+      kicker: '03 · Telecom fintech · Product turnaround',
       hook: 'Daily transactions back from <em>IDR <span class="nw">300–500M</span> to 1B.</em>',
       sub: 'A ten-year-old app was losing to newer rivals. We rebuilt the product, the platform and the brand in six months.',
       role: ['ViaPulsa Global Indonesia · Feb 2023–Mar 2025', 'Head of Product (Product Director), leading 45 people'],
@@ -263,81 +379,6 @@ export const projects: Project[] = [
         title: 'What I took away',
         blocks: [
           { type: 'p', html: 'A big-bang revamp can pay off, but long-time users feel every change. Next time I would plan the move for existing users as carefully as the new features.' },
-        ],
-      },
-    ],
-  },
-  {
-    slug: 'ai-erp',
-    short: 'AI & ERP',
-    num: '03',
-    accent: '#5B9BFF',
-    card: {
-      kicker: 'AI & ERP · B2B SaaS',
-      hook: 'Quote-to-shipment from <span class="nw">30–50</span> to <span class="nw">15–20</span> minutes',
-      company: 'eDOT · 2025–2026',
-      role: 'Product Manager, AI ERP',
-    },
-    opener: {
-      kicker: '03 · AI & ERP · B2B SaaS',
-      hook: 'Quote-to-shipment from <em><span class="nw">30–50</span> to <span class="nw">15–20</span> minutes.</em>',
-      sub: 'Users didn’t need another AI product. They needed the ERP they already had to stop feeling complicated.',
-      role: ['eDOT · Dec 2025–Jul 2026 · Remote', 'Product Manager, AI ERP (edic & esuite) · Client: Nabati Group'],
-      cover: { file: 'edot-edic-cover.jpg', alt: 'edic landing page: an AI data analyst you chat with, with an Ask edic prompt box and Agent Mode' },
-    },
-    beats: [
-      {
-        label: 'Context',
-        title: 'Two products, one goal',
-        blocks: [
-          { type: 'p', html: 'eDOT builds <b>esuite</b>, a distribution management ERP, and <b>edic</b>, an AI data analyst you can talk to. The goal: bring AI agents and assistants into the ERP to make processes smoother and cut operational cost at Nabati Group’s warehouses.' },
-          { type: 'figure', file: 'edot-esuite.jpg', alt: 'esuite distribution management ERP interface', caption: 'esuite, the distribution management ERP used across Nabati Group warehouses.' },
-        ],
-      },
-      {
-        label: 'The problem',
-        title: 'So what went wrong?',
-        blocks: [
-          { type: 'takeaway', label: 'Users said', text: 'The ERP has so many features that just getting through a process feels like work.' },
-          { type: 'p', html: 'We had started by building AI as its own thing. Talking to Nabati users showed us the real pain was ERP complexity, not a missing AI tool.' },
-        ],
-      },
-      {
-        label: 'Decisions',
-        title: 'The pivot',
-        blocks: [
-          { type: 'p', html: 'Together with other PMs, I evaluated most major AI models, comparing capability per use case against token consumption, since the business model is usage-based.' },
-          { type: 'log', items: [
-            { tag: 'Chosen', title: 'Connect AI into existing ERP workflows', text: 'Hits the pain users actually named, and adds value to a product customers already pay for.' },
-            { tag: 'Deprioritized', title: 'AI as a separate product', text: 'Our starting point. It would not have fixed ERP complexity.' },
-          ] },
-          { type: 'flow', title: 'From standalone AI to AI inside the ERP', steps: [
-            { title: 'User', text: 'Says what they need instead of digging through menus' },
-            { title: 'edic', text: 'Sets up and recaps the process', highlight: true },
-            { title: 'esuite', text: 'Quotation to shipment, transactions to finance' },
-          ] },
-          { type: 'p', html: 'We ran the proof of concept in warehouses on Java, then rolled out to most Nabati warehouses across Indonesia.' },
-        ],
-      },
-      {
-        label: OUTCOME,
-        title: 'What changed',
-        blocks: [
-          { type: 'two', left: [
-            { type: 'compare', charts: [
-              { title: 'Quote-to-shipment cycle', max: 50, caption: 'Still improving as both the AI and its users keep learning.', ariaLabel: 'Quote-to-shipment cycle: before 30 to 50 minutes, after 15 to 20 minutes', rows: [
-                { label: 'Before', value: '30–50 min', lo: 30, hi: 50, kind: 'before' }, { label: 'After', value: '15–20 min', lo: 15, hi: 20, kind: 'after' }] },
-            ] },
-          ], right: [
-            { type: 'stats', items: [['20–25', 'new features shipped'], ['~40%', 'of them major, from transactions to finance']] },
-          ] },
-        ],
-      },
-      {
-        label: LESSON,
-        title: 'What I took away',
-        blocks: [
-          { type: 'p', html: 'The most valuable AI work wasn’t choosing the model. It was finding where users got stuck and putting AI exactly there.' },
         ],
       },
     ],
