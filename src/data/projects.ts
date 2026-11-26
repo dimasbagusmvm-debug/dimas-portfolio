@@ -690,5 +690,115 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: 'tappin-hpp',
+    short: 'tapp.in HPP',
+    num: '02',
+    group: 'builder',
+    accent: '#FF8A65',
+    card: {
+      kicker: 'Pricing tool · Built with Claude Code',
+      hook: 'Busy shop, thin margin: a pricing tool for small food businesses',
+      company: 'tapp.in HPP · 2026',
+      role: 'Product owner & builder',
+    },
+    opener: {
+      kicker: 'Product builder · Pricing tool · Built with Claude Code',
+      hook: 'Lots of sales, <em>very little profit.</em>',
+      sub: 'Many small food businesses price by feel, copy the shop next door, or forget that delivery apps take a cut. tapp.in HPP works out the cost of one portion from its ingredients, then gives a selling price that still makes money in the shop, on delivery apps and on marketplaces.',
+      role: ['tapp.in HPP · beta v0.4 · 2026', 'Product owner & builder · Claude Code'],
+      cover: { file: 'hpp-landing.jpg', position: 'top', alt: 'tapp.in HPP landing page: “Mau jualan, tapi bingung harganya berapa?” next to a phone showing suggested prices for dine-in and delivery apps' },
+    },
+    beats: [
+      {
+        label: 'Context',
+        title: 'Why this was the next thing to build',
+        blocks: [
+          { type: 'p', html: 'While building the tapp.in cashier, the bigger problem sat one step earlier. A lot of small businesses set the wrong price from the start: they sell plenty, and still take home very little. A cashier app can record every sale perfectly and it won’t fix that.' },
+          { type: 'stats', items: [['HPP', 'cost of ingredients for one portion, the number most prices should start from'], ['3', 'places to sell: in the shop, delivery apps, marketplaces'], ['30%', 'what a delivery app can take per order, often left out of the menu price']] },
+        ],
+      },
+      {
+        label: 'Discovery',
+        title: 'Where the margin leaks',
+        blocks: [
+          { type: 'p', html: 'I started from the problem and worked backwards: if the shop is busy and the profit is thin, where is the money going? Three causes kept coming up.' },
+          { type: 'problems', items: [
+            ['Fragile spreadsheets', 'One wrong cell and every selling price is off. Buying per kilo but measuring per gram makes the maths worse.'],
+            ['Pricing by feel', 'Prices get rounded or copied from competitors, even though every kitchen’s costs are different.'],
+            ['The forgotten commission', 'The price on a delivery app is the same as in the shop, even though the app takes up to 30% of every order.'],
+          ] },
+          { type: 'takeaway', label: 'Insight', text: 'A busy shop isn’t the same as a profitable one. The fix has to happen before the first sale, when the price is set.' },
+        ],
+      },
+      {
+        label: 'Who it’s for',
+        title: 'Small businesses setting prices from scratch',
+        blocks: [
+          { type: 'tiles', items: [
+            { title: 'Starting out', text: 'Owners who need to set a price for every menu item from zero', highlight: true },
+            { title: 'Selling in many places', text: 'One menu, different prices for the shop, delivery apps and e-commerce', highlight: true },
+            { title: 'No accounting team', text: 'Fill in ingredients and portions; the formulas stay out of sight' },
+            { title: 'Phone first', text: 'Works on a phone or a laptop, and keeps working on a weak signal' },
+          ] },
+        ],
+      },
+      {
+        label: 'Decisions',
+        title: 'Keeping it light enough to actually use',
+        blocks: [
+          { type: 'log', items: [
+            { tag: 'Chosen', title: 'Free, no sign-up', text: 'Open it and start filling in. The first menu takes about five minutes.' },
+            { tag: 'Chosen', title: 'Data stays on the device', text: 'Everything is saved in the browser and nothing is sent to a server. The trade-off, stated in the app: data doesn’t sync between phone and laptop, and clearing the browser deletes it, so there’s a backup option.' },
+            { tag: 'Chosen', title: 'Safe default commissions', text: 'Defaults use the highest average cuts for 2026, so prices don’t come out too cheap: delivery apps 30% + Rp1,000, marketplaces 20.2% + Rp2,250. Every platform can be adjusted.' },
+            { tag: 'Chosen', title: 'A guided path of four steps', text: 'Each step needs the result of the one before, so the app leads from ingredients to a selling price.' },
+            { tag: 'Supporting', title: 'Separate from the tapp.in cashier', text: 'Its own tool under the same brand. The selling prices it produces can be used as product prices in the cashier.' },
+          ] },
+        ],
+      },
+      {
+        label: 'How it works',
+        title: 'From ingredients to a selling price in four steps',
+        blocks: [
+          { type: 'flow', title: 'The four steps', steps: [
+            { title: '1. Ingredients', text: 'Record purchase prices per kg, litre or pack; the price per gram is worked out' },
+            { title: '2. Menu', text: 'Enter the amounts for one portion; the cost per portion appears', highlight: true },
+            { title: '3. Selling price', text: 'Set a profit target, get three prices: shop, delivery apps, marketplace', highlight: true },
+            { title: '4. Promos & bulk', text: 'Check how far a discount can go, and prices for orders of 10+ to 100+' },
+          ] },
+        ],
+      },
+      {
+        label: 'The product',
+        title: 'What it looks like',
+        blocks: [
+          { type: 'figure', file: 'hpp-price.jpg', alt: 'tapp.in HPP selling price screen: cost per portion Rp10,775, a 35% profit target, and suggested prices of Rp17,000 in the shop and Rp34,000 on delivery apps', caption: 'Selling price per channel. With a 35% target, the same dish is Rp17,000 in the shop and Rp34,000 on delivery apps, because the commission is already covered.' },
+          { type: 'figures', items: [
+            { file: 'hpp-promo.jpg', alt: 'tapp.in HPP promo screen showing a 15% Ramadan discount, profit per portion and the maximum safe discount', caption: 'Promos: see the profit left after a discount, how many portions need to sell to keep daily profit the same, and the maximum safe discount.' },
+            { file: 'hpp-mobile.jpg', tall: true, alt: 'tapp.in HPP on a phone: the four-step progress screen', caption: 'On a phone, the four steps with progress, so it’s clear what to fill in next.' },
+          ] },
+          { type: 'ul', items: [
+            '45+ common food ingredients ready to pick, and 21 units from kilograms to tablespoons.',
+            'Batch recipes, like a pot of sambal, that other menu items can use.',
+            'When an ingredient’s price goes up, every affected menu is recalculated and flagged.',
+          ] },
+        ],
+      },
+      {
+        label: OUTCOME,
+        title: 'Where it is now',
+        blocks: [
+          { type: 'stats', items: [['Live', 'free at tappin-app.vercel.app/hpp, beta v0.4'], ['3', 'selling prices per menu item, commissions included'], ['4', 'guided steps from ingredients to promo'], ['0', 'sign-ups needed; data stays on the device']] },
+        ],
+      },
+      {
+        label: LESSON,
+        title: 'What I took away',
+        blocks: [
+          { type: 'p', html: 'The cashier showed me where small businesses lose money: at the moment they set a price, long before the first sale. Building the tool for that moment came first, and it fits naturally in front of the cashier.' },
+        ],
+      },
+    ],
+  },
 ];
 

@@ -644,4 +644,114 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: 'tappin-hpp',
+    short: 'tapp.in HPP',
+    num: '02',
+    group: 'builder',
+    accent: '#FF8A65',
+    card: {
+      kicker: 'Alat hitung harga · Dibikin pakai Claude Code',
+      hook: 'Laris tapi untungnya tipis: alat hitung harga buat UMKM kuliner',
+      company: 'tapp.in HPP · 2026',
+      role: 'Product owner & builder',
+    },
+    opener: {
+      kicker: 'Product builder · Alat hitung harga · Dibikin pakai Claude Code',
+      hook: 'Jualannya laris, <em>untungnya tipis.</em>',
+      sub: 'Banyak UMKM kuliner pasang harga pakai feeling, ngikut warung sebelah, atau lupa kalau ojol motong komisi. tapp.in HPP ngitung modal satu porsi dari bahannya, terus ngasih harga jual yang tetap untung di toko, di ojol, dan di marketplace.',
+      role: ['tapp.in HPP · beta v0.4 · 2026', 'Product owner & builder · Claude Code'],
+      cover: { file: 'hpp-landing.jpg', position: 'top', alt: 'Landing page tapp.in HPP: “Mau jualan, tapi bingung harganya berapa?” di samping ponsel yang menampilkan harga jual langsung dan ojol' },
+    },
+    beats: [
+      {
+        label: 'Konteks',
+        title: 'Kenapa ini yang aku bikin berikutnya',
+        blocks: [
+          { type: 'p', html: 'Waktu bikin kasir tapp.in, aku sadar masalah yang lebih besar ada satu langkah sebelumnya. Banyak UMKM salah pasang harga dari awal: jualannya banyak, untung yang dibawa pulang dikit. Aplikasi kasir bisa nyatet semua transaksi dengan rapi, tapi harga yang salah tetap salah.' },
+          { type: 'stats', items: [['HPP', 'modal bahan buat satu porsi, angka yang harusnya jadi dasar harga'], ['3', 'tempat jualan: di toko, ojol, marketplace'], ['30%', 'potongan ojol per pesanan, yang sering lupa dimasukin ke harga']] },
+        ],
+      },
+      {
+        label: 'Discovery',
+        title: 'Untungnya bocor di mana?',
+        blocks: [
+          { type: 'p', html: 'Aku mulai dari masalahnya, terus mundur ke belakang: kalau tokonya ramai tapi untungnya tipis, uangnya ke mana? Ada tiga penyebab yang paling sering muncul.' },
+          { type: 'problems', items: [
+            ['Rumus Excel yang gampang rusak', 'Salah satu sel, semua harga jual ikut salah. Beli per kilo tapi takarnya per gram bikin hitungannya makin ribet.'],
+            ['Harga pakai feeling', 'Harganya dibulatin atau ngikut kompetitor, padahal modal tiap dapur beda-beda.'],
+            ['Potongan ojol kelupaan', 'Harga di ojol disamain sama di toko, padahal komisinya bisa sampai 30% per pesanan.'],
+          ] },
+          { type: 'takeaway', label: 'Insight', text: 'Toko ramai belum tentu untung. Perbaikannya harus terjadi sebelum transaksi pertama, waktu harganya dipasang.' },
+        ],
+      },
+      {
+        label: 'Untuk siapa',
+        title: 'UMKM yang pasang harga dari nol',
+        blocks: [
+          { type: 'tiles', items: [
+            { title: 'Baru mulai', text: 'Pemilik usaha yang perlu nentuin harga tiap menu dari awal', highlight: true },
+            { title: 'Jualan di banyak tempat', text: 'Satu menu, harga beda buat toko, ojol, dan e-commerce', highlight: true },
+            { title: 'Nggak punya tim akuntansi', text: 'Cukup isi bahan dan takaran, rumusnya nggak perlu dipikirin' },
+            { title: 'Utamain HP', text: 'Bisa di HP atau laptop, dan tetap jalan pas sinyal lemah' },
+          ] },
+        ],
+      },
+      {
+        label: 'Keputusan',
+        title: 'Dibikin seringan mungkin biar beneran dipakai',
+        blocks: [
+          { type: 'log', items: [
+            { tag: 'Chosen', title: 'Gratis, tanpa daftar', text: 'Buka, langsung isi. Menu pertama kelar sekitar lima menit.' },
+            { tag: 'Chosen', title: 'Data disimpan di perangkat', text: 'Semua tersimpan di browser dan nggak dikirim ke server. Konsekuensinya juga ditulis jelas di aplikasi: data di HP nggak otomatis muncul di laptop, dan bisa hilang kalau data browser dihapus. Makanya ada fitur backup.' },
+            { tag: 'Chosen', title: 'Potongan default yang aman', text: 'Default-nya pakai rata-rata potongan tertinggi 2026 biar harganya nggak kemurahan: ojol 30% + Rp1.000, marketplace 20,2% + Rp2.250. Tiap platform bisa diatur sendiri.' },
+            { tag: 'Chosen', title: 'Dipandu empat langkah', text: 'Tiap langkah butuh hasil dari langkah sebelumnya, jadi aplikasinya nuntun dari bahan sampai harga jual.' },
+            { tag: 'Supporting', title: 'Terpisah dari kasir tapp.in', text: 'Alat sendiri di bawah brand yang sama. Harga jual yang udah dihitung bisa langsung dipakai jadi harga produk di kasir.' },
+          ] },
+        ],
+      },
+      {
+        label: 'Cara kerja',
+        title: 'Dari bahan ke harga jual dalam empat langkah',
+        blocks: [
+          { type: 'flow', title: 'Empat langkahnya', steps: [
+            { title: '1. Bahan', text: 'Catat harga belanja per kg, liter, atau pak; harga per gram dihitung otomatis' },
+            { title: '2. Menu', text: 'Isi takaran satu porsi; modal per porsi langsung keluar', highlight: true },
+            { title: '3. Harga jual', text: 'Atur target untung, dapat tiga harga: toko, ojol, marketplace', highlight: true },
+            { title: '4. Promo & grosir', text: 'Cek batas aman diskon dan harga pesanan 10+ sampai 100+' },
+          ] },
+        ],
+      },
+      {
+        label: 'Produknya',
+        title: 'Kayak gini tampilannya',
+        blocks: [
+          { type: 'figure', file: 'hpp-price.jpg', alt: 'Layar harga jual tapp.in HPP: modal per porsi Rp10.775, target untung 35%, harga disarankan Rp17.000 di toko dan Rp34.000 di ojol', caption: 'Harga jual per tempat. Dengan target untung 35%, menu yang sama jadi Rp17.000 di toko dan Rp34.000 di ojol, karena komisinya udah ketutup.' },
+          { type: 'figures', items: [
+            { file: 'hpp-promo.jpg', alt: 'Layar promo tapp.in HPP dengan diskon Ramadan 15%, untung per porsi, dan batas aman diskon', caption: 'Promo: kelihatan sisa untung setelah diskon, berapa porsi harus laku biar untung harian sama, dan diskon maksimal yang masih aman.' },
+            { file: 'hpp-mobile.jpg', tall: true, alt: 'tapp.in HPP di ponsel: layar progres empat langkah', caption: 'Di HP, empat langkah dengan progresnya, jadi jelas habis ini harus isi apa.' },
+          ] },
+          { type: 'ul', items: [
+            'Ada 45+ bahan FnB umum yang tinggal dipilih, dan 21 satuan dari kilogram sampai sendok makan.',
+            'Resep batch, misalnya sambal satu panci, yang bisa dipakai menu lain.',
+            'Kalau harga bahan naik, HPP semua menu yang kena dihitung ulang dan langsung ditandai.',
+          ] },
+        ],
+      },
+      {
+        label: OUTCOME,
+        title: 'Posisinya sekarang',
+        blocks: [
+          { type: 'stats', items: [['Live', 'gratis di tappin-app.vercel.app/hpp, beta v0.4'], ['3', 'harga jual per menu, komisi udah dihitung'], ['4', 'langkah terpandu dari bahan sampai promo'], ['0', 'pendaftaran; datanya tetap di perangkat']] },
+        ],
+      },
+      {
+        label: LESSON,
+        title: 'Yang aku pelajari',
+        blocks: [
+          { type: 'p', html: 'Dari bikin kasir, aku jadi lihat di mana UMKM kehilangan uang: waktu masang harga, jauh sebelum transaksi pertama. Alat buat momen itu harus ada duluan, dan posisinya pas banget di depan kasir.' },
+        ],
+      },
+    ],
+  },
 ];
