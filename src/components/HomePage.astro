@@ -5,7 +5,7 @@ import ProjectCard from './ProjectCard.astro';
 import CareerTimeline from './CareerTimeline.astro';
 import ContactLinks from './ContactLinks.astro';
 import { site, home } from '../data/site';
-import { getProjects, localePath, projectGroup, type Locale } from '../i18n';
+import { getProjects, localePath, projectGroup, ui, type Locale } from '../i18n';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
@@ -23,13 +23,18 @@ const accent = Object.fromEntries(getProjects(locale).map((p) => [p.slug, p.acce
       <div class="hstats">
         {t.heroStats.map((s) => (
           <a class="hstat" href={localePath(locale, `/projects/${s.slug}/`)} style={`--acc:${accent[s.slug]}`}>
-            <b set:html={s.big} /><span>{s.caption}</span><small>{s.small}</small>
+            <b set:html={s.big} /><span>{s.caption}</span><small>{s.small}</small><em class="go">{ui[locale].tileGo}</em>
           </a>
         ))}
       </div>
     </div>
     <CareerTimeline kicker={t.careerKicker} locale={locale} />
   </Slide>
+
+  <section class="statement">
+    <p class="statement-big">{t.statement}</p>
+    <p class="statement-sub">{t.statementSub}</p>
+  </section>
 
   <section class="projects" id="projects">
     <p class="kicker">{t.projectsKicker}</p>
@@ -47,7 +52,7 @@ const accent = Object.fromEntries(getProjects(locale).map((p) => [p.slug, p.acce
     </section>
   )}
 
-  <section class="back">
+  <section class="back" id="experience">
     <h2>{t.experienceTitle}</h2>
     <ul class="exp">
       {t.experience.map((e) => <li><span class="yr">{e.dates}</span><div><b>{e.role}</b><span class="r">{e.line}</span></div></li>)}
@@ -64,7 +69,7 @@ const accent = Object.fromEntries(getProjects(locale).map((p) => [p.slug, p.acce
     </div>
   </section>
 
-  <Slide class="end" kicker={t.ctaKicker} hook={t.ctaHook} sub={t.ctaSub}>
+  <Slide id="contact" class="end" kicker={t.ctaKicker} hook={t.ctaHook} sub={t.ctaSub}>
     <ContactLinks locale={locale} />
   </Slide>
   <footer>{site.name} · {t.location}</footer>

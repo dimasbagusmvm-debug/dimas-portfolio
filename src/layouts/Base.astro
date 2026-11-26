@@ -8,8 +8,8 @@ import '@fontsource/instrument-sans/600.css';
 import '@fontsource/jetbrains-mono/500.css';
 import '@fontsource/jetbrains-mono/700.css';
 import '../styles/global.css';
-import { url } from '../data/site';
-import { alternates, ui, type Locale } from '../i18n';
+import { url, site } from '../data/site';
+import { alternates, localePath, ui, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -56,16 +56,28 @@ const og = ogImage ? new URL(ogImage, Astro.site).href : undefined;
     {og && <meta name="twitter:image" content={og} />}
   </head>
   <body>
-    <main class="wrap">
-      {alt && (
-        <nav class="langs" aria-label="Language">
-          {(['en', 'id'] as const).map((l) => (
-            l === locale
-              ? <span aria-current="true">{l.toUpperCase()}</span>
-              : <a href={alt[l]} hreflang={l} lang={l} title={ui[locale].switchTo}>{l.toUpperCase()}</a>
-          ))}
+    <header class="topbar">
+      <div class="topbar-in">
+        <a class="brand" href={localePath(locale, '/')}>{site.name}</a>
+        <nav class="sections" aria-label="Sections">
+          <a href={localePath(locale, '/#projects')}>{ui[locale].nav.projects}</a>
+          <a href={localePath(locale, '/#builder')}>{ui[locale].nav.builds}</a>
+          <a href={localePath(locale, '/#experience')}>{ui[locale].nav.experience}</a>
+          <a href={localePath(locale, '/#contact')}>{ui[locale].nav.contact}</a>
         </nav>
-      )}
+        {alt && (
+          <nav class="langs" aria-label="Language">
+            {(['en', 'id'] as const).map((l) => (
+              l === locale
+                ? <span aria-current="true">{l.toUpperCase()}</span>
+                : <a href={alt[l]} hreflang={l} lang={l} title={ui[locale].switchTo}>{l.toUpperCase()}</a>
+            ))}
+          </nav>
+        )}
+        <a class="cta" href={localePath(locale, '/#contact')}>{ui[locale].nav.cta}</a>
+      </div>
+    </header>
+    <main class="wrap">
       <slot />
     </main>
   </body>

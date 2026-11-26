@@ -11,11 +11,12 @@ interface Props {
   role?: string[];
   cover?: { file: string; alt: string; position?: string };
   class?: string;
+  id?: string;
 }
-const { kicker, hook, hookIsH1 = false, sub, role, cover, class: cls = '' } = Astro.props;
+const { kicker, hook, hookIsH1 = false, sub, role, cover, class: cls = '', id } = Astro.props;
 const Hook = hookIsH1 ? 'h1' : 'p';
 ---
-<section class:list={['slide', cls]}>
+<section id={id} class:list={['slide', cls]}>
   <p class="kicker">{kicker}</p>
   <Hook class="hook" set:html={hook} />
   <slot name="before-sub" />

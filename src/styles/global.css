@@ -189,7 +189,38 @@ footer{font-family:var(--mono);font-size:.75rem;color:var(--muted);padding:0 0 2
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.pcard:hover,.hstat:hover{transform:none}*{transition:none!important}}
 
 /* Language switch */
-.langs{display:flex;justify-content:flex-end;gap:.3rem;margin:0 0 .8rem;font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.08em}
+.langs{display:flex;justify-content:flex-end;gap:.3rem;margin:0;font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.08em}
 .langs a,.langs span{padding:.3rem .65rem;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--muted);background:var(--surface)}
 .langs span{color:var(--ink);border-color:var(--ink)}
 .langs a:hover{color:var(--ink);border-color:var(--acc)}
+
+/* Sticky top bar */
+html{scroll-padding-top:4.5rem}
+.topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.topbar-in{max-width:62rem;margin:0 auto;padding:.65rem 1.1rem;display:flex;align-items:center;gap:1rem}
+.brand{font-family:var(--display);font-weight:800;font-size:1rem;text-decoration:none;color:var(--ink);white-space:nowrap}
+.sections{display:flex;gap:1.1rem;margin-left:auto;font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.sections a{text-decoration:none;color:var(--muted)}
+.sections a:hover{color:var(--ink)}
+.topbar .cta{font-family:var(--mono);font-size:.76rem;font-weight:700;text-decoration:none;background:var(--ink);color:var(--bg);padding:.45rem .85rem;border-radius:999px;white-space:nowrap}
+@media (max-width:760px){.sections{display:none}.topbar .langs{margin-left:auto}}
+
+/* Personal statement */
+.statement{padding:3.5rem 0 .5rem;max-width:48rem}
+.statement-big{font-family:var(--display);font-weight:700;font-size:clamp(1.45rem,3.4vw,2.15rem);line-height:1.2;letter-spacing:-.015em;margin:0}
+.statement-sub{color:var(--muted);max-width:40rem;margin:1rem 0 0}
+
+/* Hero tiles read as links */
+.hstat .go{display:block;font-style:normal;font-family:var(--mono);font-size:.7rem;font-weight:700;color:var(--acc);margin-top:.7rem;opacity:.85}
+.hstat:hover .go{opacity:1}
+.hstat:hover{box-shadow:0 10px 30px -14px color-mix(in srgb,var(--acc) 60%,transparent)}
+
+/* "Similar problem?" card on case studies */
+.similar{margin:3rem 0 0;padding:1.4rem 1.5rem;border-radius:16px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--acc)}
+.similar .kicker{color:var(--acc-ink)}
+.similar-title{font-family:var(--display);font-weight:800;font-size:1.4rem;margin:.4rem 0 .2rem}
+.similar-sub{color:var(--muted);margin:0}
+.similar .links a{border-color:var(--line);background:var(--bg);color:var(--ink)}
+.similar .links a.primary{background:var(--acc);color:#120E24;border-color:transparent}
+.brand{min-width:0;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:520px){.topbar-in{gap:.5rem}.topbar .cta{padding:.4rem .7rem;font-size:.7rem}.topbar .langs a,.topbar .langs span{padding:.25rem .5rem}}
